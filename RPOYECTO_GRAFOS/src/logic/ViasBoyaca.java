@@ -11,8 +11,8 @@ public class ViasBoyaca {
 	private Via viaL;
 
 	public ViasBoyaca() {
-		ciudades = null;
-		vias = null;
+		ciudades = new ArrayList<Ciudad>();;
+		vias = new ArrayList<Via>();
 		ciudadL = null;
 		viaL = null;
 		valoresRecorridos = null;
@@ -39,4 +39,18 @@ public class ViasBoyaca {
 	}
 	public void calcularRecorridoTiempo(){
 	}
+	public ArrayList<Ciudad> getCiudades() {
+		return ciudades;
+	}
+	public void setCiudades(ArrayList<Ciudad> ciudades) {
+		this.ciudades = ciudades;
+	}
+	public ArrayList<Via> getVias() {
+		return vias;
+	}
+	public void setVias(ArrayList<Via> vias) {
+		this.vias = vias;
+	}
+	
+	
 }

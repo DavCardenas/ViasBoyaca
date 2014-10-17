@@ -57,5 +57,4 @@ public class Via {
 	public void setCiudadFinal(Ciudad ciudadFinal) {
 		this.ciudadFinal = ciudadFinal;
 	}
-	
 }
