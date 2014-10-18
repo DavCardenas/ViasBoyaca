@@ -155,6 +155,10 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			borrarCiudad.setVisible(false);
 			panelBorrar.setVisible(true);
 		default:
+		case BorrarCiudad.BTN_ACEPTAR:
+			borrarCiudad.eliminarCiudad(principal.getBoyaca().getCiudades());
+			borrarCiudad.actualizarCiudades(principal.getBoyaca().getCiudades());
+			panelMapa.repaint();
 			break;
 		}
 	}

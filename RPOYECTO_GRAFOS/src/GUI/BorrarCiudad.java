@@ -68,5 +68,11 @@ public class BorrarCiudad extends JPanel{
 			modelCiudades.addElement(ciudad.getNombre());
 		}
 	}
-	
+	public ArrayList<Ciudad> eliminarCiudad(ArrayList<Ciudad> ciudades){
+		if (!ciudades.isEmpty()) {
+			ciudades.remove(cbxCiudades.getSelectedIndex());
+		}
+		return ciudades;
+		
+	}
 }
