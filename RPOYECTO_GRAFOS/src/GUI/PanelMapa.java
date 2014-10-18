@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import logic.Ciudad;
+import logic.Via;
 import logic.ViasBoyaca;
 
 public class PanelMapa extends JPanel implements MouseListener {
@@ -69,7 +70,16 @@ public class PanelMapa extends JPanel implements MouseListener {
 	}
 	
 	public void crearVia(MouseEvent e) {
-
+		Via via = new Via();
+		if (ciudades[0]!=null&&ciudades[1]!=null) {
+			panelAcciones.getPanelCrearVia().enviarDatos(via);
+			via.setCiudadInicial(ciudades[0]);
+			via.setCiudadFinal(ciudades[1]);
+			viasBoyaca.getVias().add(via);
+		}else {
+			JOptionPane.showMessageDialog(this, "No se puede crear la via");
+		}
+		repaint();
 	}
 
 	@Override
@@ -81,6 +91,12 @@ public class PanelMapa extends JPanel implements MouseListener {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 			for (Ciudad ciudad : aux) {
 				g.fillOval(ciudad.getPosX(), ciudad.getPosY(), 6, 6);
+			}
+		}
+		if (!viasBoyaca.getVias().isEmpty()) {
+			ArrayList<Via> auxV = viasBoyaca.getVias();
+			for (Via via : auxV) {
+				g.drawLine(via.getCiudadInicial().getPosX(), via.getCiudadInicial().getPosY(), via.getCiudadFinal().getPosX(), via.getCiudadFinal().getPosY());
 			}
 		}
 		super.paint(g);

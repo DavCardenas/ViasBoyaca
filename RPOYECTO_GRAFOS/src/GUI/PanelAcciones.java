@@ -21,6 +21,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private boolean[] presionado;
 	private BorrarCiudad borrarCiudad;
 	private VentanaPrincipal principal;
+	
 	public PanelAcciones(VentanaPrincipal ven) {
 		this.principal = ven;
 		setPreferredSize(new Dimension((ven.getWidth()),200));
@@ -43,6 +44,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		
 		panelBorrar = new PanelBorrar(ven, this);
 		panelBorrar.setBounds(0, 0, panelBorrar.getWidth(), panelBorrar.getHeight());
+		
 		borrarCiudad = new BorrarCiudad(ven, this);
 		borrarCiudad.setVisible(false);
 		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
@@ -140,10 +142,14 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			break;
 		case VentanaPrincipal.COMANDO_ABOUT:
 			principal.ShowAbout();
-		break;
+			break;
 		case PanelBorrar.BTN_BORRAR_CIUDAD:
+			System.out.println("asd");
 			panelBorrar.setVisible(false);
 			borrarCiudad.setVisible(true);
+		case PanelCrearVia.BTN_CREAR_VIA:
+			
+			break;
 		default:
 			break;
 		}

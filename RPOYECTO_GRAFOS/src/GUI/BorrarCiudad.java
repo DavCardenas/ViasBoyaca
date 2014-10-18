@@ -61,6 +61,7 @@ public class BorrarCiudad extends JPanel{
 		gbc = new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnVolver, gbc);
 	}
+	
 	public void actualizarCiudades(ArrayList<Ciudad> Ciudades) {
 		modelCiudades.removeAllElements();
 		for (Ciudad ciudad : Ciudades) {
