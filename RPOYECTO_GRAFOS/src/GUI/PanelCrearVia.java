@@ -11,8 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import logic.Estado;
-import logic.Via;
+import logic.Sentido;
 
 public class PanelCrearVia extends JPanel{
 
@@ -23,14 +22,13 @@ public class PanelCrearVia extends JPanel{
 	private JTextField txtLongitud;
 	private JTextField txtTiempo;
 	private JTextField txtVelocidad;
-	private JComboBox<Estado> cbxEstado;
+	private JComboBox<Sentido> cbxSentido;
 	private JButton btnAceptar;
 	private JButton btnVolver;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
 	public final static String BTN_VOLVER = "BTN_VOLVER_VIA";
-	public final static String BTN_CREAR_VIA = "BTN_CREAR_VIA";
 	
 	public PanelCrearVia(VentanaPrincipal ven,PanelAcciones ppAcciones) {
 		
@@ -66,13 +64,11 @@ public class PanelCrearVia extends JPanel{
 		gbc = new GridBagConstraints(1, 2, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(txtTiempo, gbc);
 		
-		cbxEstado = new JComboBox<Estado>(Estado.values());
+		cbxSentido = new JComboBox<Sentido>(Sentido.values());
 		gbc = new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
-		add(cbxEstado, gbc);
+		add(cbxSentido, gbc);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setActionCommand(BTN_CREAR_VIA);
-		btnAceptar.addActionListener(ppAcciones);
 		gbc = new GridBagConstraints(0, 4, 2, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnAceptar, gbc);
 		
@@ -83,23 +79,5 @@ public class PanelCrearVia extends JPanel{
 		add(btnVolver, gbc);
 	}
 	
-	public boolean verificarDatos() {
-		if (!txtLongitud.getText().isEmpty()) {
-			if (!txtTiempo.getText().isEmpty()) {
-				if (!txtVelocidad.getText().isEmpty()) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 	
-	public void enviarDatos(Via via) {
-		if (verificarDatos()) {
-			via.setLongitud(Integer.parseInt(txtLongitud.getText()));
-			via.setTiempo(Integer.parseInt(txtLongitud.getText()));
-			via.setEstado((String)cbxEstado.getSelectedItem());
-			via.getVelocidad()[0]=Integer.parseInt(txtLongitud.getText());
-		}
-	}
 }

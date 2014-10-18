@@ -3,7 +3,7 @@ package logic;
 public class Via {
 
 	private int longitud;
-	private String estado;
+	private boolean sentido;
 	private int tiempo;
 	private int [] velocidad;
 	private Ciudad ciudadInicial;
@@ -11,7 +11,7 @@ public class Via {
 
 	public Via() {
 		longitud = 0;
-		estado = "";
+		sentido = false;
 		tiempo = 0;
 		velocidad = new int [2];
 		ciudadInicial = null;
@@ -27,15 +27,14 @@ public class Via {
 	public void setLongitud(int longitud) {
 		this.longitud = longitud;
 	}
+	public boolean isSentido() {
+		return sentido;
+	}
+	public void setSentido(boolean sentido) {
+		this.sentido = sentido;
+	}
 	public int getTiempo() {
 		return tiempo;
-	}
-	
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;

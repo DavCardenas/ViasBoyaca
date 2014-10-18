@@ -31,6 +31,7 @@ public class BorrarCiudad extends JPanel{
 	private JButton btnVolver;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
+	private ViasBoyaca boyaca;
 	
 	public final static String BTN_VOLVER = "VOLVER_BORRARC";
 	public final static String BTN_ACEPTAR = "ACEPTAR_BORRARC";
@@ -40,6 +41,8 @@ public class BorrarCiudad extends JPanel{
 		setPreferredSize(new Dimension((int)(ven.getWidth()*0.33),200));
 		gridbag = new GridBagLayout();
 		setLayout(gridbag);
+		
+		boyaca = new ViasBoyaca();
 		
 		lbNombre = new JLabel("Ciudad");
 		gbc = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
@@ -62,9 +65,9 @@ public class BorrarCiudad extends JPanel{
 		add(btnVolver, gbc);
 	}
 	
-	public void actualizarCiudades(ArrayList<Ciudad> Ciudades) {
+	public void actualizarCiudades(ArrayList<Ciudad> ciudades) {
 		modelCiudades.removeAllElements();
-		for (Ciudad ciudad : Ciudades) {
+		for (Ciudad ciudad : ciudades) {
 			modelCiudades.addElement(ciudad.getNombre());
 		}
 	}
