@@ -31,7 +31,8 @@ public class PanelMapa extends JPanel implements MouseListener {
 	private ViasBoyaca viasBoyaca;
 	private PanelAcciones panelAcciones;
 	private boolean encontrar;
-	private Ciudad Cinicial, Cfinal;
+	private Ciudad[] ciudades;
+	private int contador;
 
 	public PanelMapa(VentanaPrincipal ven, ViasBoyaca vias, PanelAcciones ppAcciones) {
 		setBackground(Color.blue);
@@ -40,6 +41,8 @@ public class PanelMapa extends JPanel implements MouseListener {
 		setLayout(null);
 
 		viasBoyaca = vias;
+		ciudades = new Ciudad[2];
+		contador = 0;
 
 		btnZoom1 = new JButton("Zoom (+)");
 		btnZoom1.setBounds(120, 350, 90, 25);
@@ -88,8 +91,20 @@ public class PanelMapa extends JPanel implements MouseListener {
 			}
 		}
 		if (panelAcciones.getPresionado()[1]) {
-			System.out.println(buscarCiudad(arg0.getX(), arg0.getY()).getNombre());
-			encontrar = false;
+			contador+=1;
+			if (!viasBoyaca.getCiudades().isEmpty()) {
+				if (contador == 1) {
+					ciudades[0] = buscarCiudad(arg0.getX(), arg0.getY());
+					System.out.println(ciudades[0].getNombre()+ " Ciudad 1");
+				}else if (contador == 2) {
+					ciudades[1] = buscarCiudad(arg0.getX(), arg0.getY());
+					System.out.println(ciudades[1].getNombre()+ " Ciudad 2");
+				}
+				encontrar = false;
+			}
+		}
+		if (contador == 2) {
+			contador = 0;
 		}
 	}
 
@@ -97,19 +112,18 @@ public class PanelMapa extends JPanel implements MouseListener {
 		if (posX >= ciudad.getPosX() && posX <= ciudad.getPosX() + 6) {
 			if (posY >= ciudad.getPosY() && posY <= ciudad.getPosY() + 6) {
 				encontrar = true;
-				System.out.println("entra");
 			}
 		}
 	}
 
 	public Ciudad buscarCiudad(int posX, int posY) {
+		Ciudad Caux = null;
 		ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 		for (int i = 0; (i < aux.size()) && !encontrar; i++) {
 			calcularColision(posX, posY, aux.get(i));
-			System.out.println(i + " i");
-			Cinicial = aux.get(i);
+			Caux = aux.get(i);
 		}
-		return Cinicial;
+		return Caux;
 	}
 
 	@Override
