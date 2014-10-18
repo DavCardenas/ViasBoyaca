@@ -130,6 +130,11 @@ public class PanelMapa extends JPanel implements MouseListener {
 			contador = 0;
 		}
 	}
+	
+	public void limpiarCiudades() {
+		ciudades[0] = null;
+		ciudades[1] = null;
+	}
 
 	public Ciudad calcularColision(int posX, int posY, Ciudad ciudad, int i) {
 		if (posX >= ciudad.getPosX() && posX <= ciudad.getPosX() + 6) {
