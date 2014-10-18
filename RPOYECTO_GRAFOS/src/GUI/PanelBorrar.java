@@ -33,14 +33,14 @@ public class PanelBorrar extends JPanel{
 		setLayout(gridbag);
 		
 		btnBorrarCiudad = new JButton("Borrar Ciudad");
-		btnBorrarCiudad.addActionListener(panelAcciones);
 		btnBorrarCiudad.setActionCommand(BTN_BORRAR_CIUDAD);
+		btnBorrarCiudad.addActionListener(panelAcciones);
 		gbc = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnBorrarCiudad, gbc);
 		
 		btnBorrarVia = new JButton("Borrar Via");
-		btnBorrarCiudad.addActionListener(panelAcciones);
 		btnBorrarCiudad.setActionCommand(BTN_BORRAR_VIA);
+		btnBorrarCiudad.addActionListener(panelAcciones);
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnBorrarVia, gbc);
 		

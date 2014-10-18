@@ -16,6 +16,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private PanelCrear panelCrear;
 	private PanelRecorrido panelRecorrido;
 	private JPanel panelDerecha;
+	private JPanel panelIzquierda;
 	private PanelMapa panelMapa;
 	private boolean[] presionado;
 	private BorrarCiudad borrarCiudad;
@@ -41,14 +42,24 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		panelDerecha.add(panelCrearVia);
 		
 		panelBorrar = new PanelBorrar(ven, this);
-		borrarCiudad = new BorrarCiudad();
+		panelBorrar.setBounds(0, 0, panelBorrar.getWidth(), panelBorrar.getHeight());
+		borrarCiudad = new BorrarCiudad(ven, this);
+		borrarCiudad.setVisible(false);
+		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
+		
+		
 		panelRecorrido = new PanelRecorrido(ven);
+		
+		panelIzquierda = new JPanel();
+		panelIzquierda.setPreferredSize(this.getPreferredSize());
+		panelIzquierda.add(panelBorrar);
+		panelIzquierda.add(borrarCiudad);
 		
 		presionado = new boolean[2];
 		
 		add(panelDerecha);
 		add(panelRecorrido);
-		add(panelBorrar);
+		add(panelIzquierda);
 	}
 	
 	
@@ -131,8 +142,8 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			principal.ShowAbout();
 		break;
 		case PanelBorrar.BTN_BORRAR_CIUDAD:
-		System.out.println("Siii");
-		break;
+			panelBorrar.setVisible(false);
+			borrarCiudad.setVisible(true);
 		default:
 			break;
 		}
