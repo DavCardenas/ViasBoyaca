@@ -1,5 +1,7 @@
 package logic;
 
+import java.awt.Color;
+
 public class Ciudad {
 	
 	private String nombre;

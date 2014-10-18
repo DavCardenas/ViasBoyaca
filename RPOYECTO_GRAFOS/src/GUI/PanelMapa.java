@@ -115,12 +115,10 @@ public class PanelMapa extends JPanel implements MouseListener {
 				if (contador == 1) {
 					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
 						ciudades[0] = buscarCiudad(arg0.getX(), arg0.getY());
-						System.out.println(ciudades[0].getNombre()+ " Ciudad 1");
 					}
 				}else if (contador == 2) {
 					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
 						ciudades[1] = buscarCiudad(arg0.getX(), arg0.getY());
-						System.out.println(ciudades[1].getNombre()+ " Ciudad 2");
 					}
 				}
 				encontrar = false;
