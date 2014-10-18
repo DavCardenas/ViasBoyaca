@@ -148,8 +148,10 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelBorrar.setVisible(false);
 			borrarCiudad.setVisible(true);
 		case PanelCrearVia.BTN_CREAR_VIA:
-			
 			break;
+		case BorrarCiudad.BTN_VOLVER:
+			borrarCiudad.setVisible(false);
+			panelBorrar.setVisible(true);
 		default:
 			break;
 		}
