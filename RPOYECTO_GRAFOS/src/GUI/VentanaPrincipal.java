@@ -44,6 +44,18 @@ public class VentanaPrincipal extends JFrame{
 	private JMenu menuAyuda;
 	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
+	private PanelAbout about;
+	
+	public static final String BTN_ABRIR = "ABRIR_ARCHIVO";
+	public static final String BTN_GUARDAR = "GUARDAR_ARCHIVO";
+	public static final String BTN_INFOCITY = "CIUDAD";
+	public static final String BTN_INFOROAD = "VIA";
+	public static final String COMANDO_ABRIR = "ABRIR_MENU";
+	public static final String COMANDO_GUARDAR = "GUARDAR_MENU";
+	public static final String COMANDO_SALIR = "SALIR";
+	public static final String COMANDO_ABOUT = "ABOUT";
+	
+	
 
 	public VentanaPrincipal() {
 		
@@ -77,6 +89,8 @@ public class VentanaPrincipal extends JFrame{
 		panelAcciones = new PanelAcciones(this);
 		mapa = new PanelMapa(this,boyaca,panelAcciones);
 		panelAcciones.setPanelMapa(mapa);
+		about = new PanelAbout(panelAcciones, this);
+		
 		//mapa.setPreferredSize(new Dimension(mapa.ANCHO, mapa.ALTO));
 		
 		// T O L B A R
@@ -89,26 +103,32 @@ public class VentanaPrincipal extends JFrame{
 		btnAbrir.setIcon(new ImageIcon(getClass().getResource(
 				"/img/openFile.png")));
 		btnAbrir.setFocusable(false);
-		//btnCrearCiudad.addActionListener(eventos);
-		//btnCrearCiudad.setActionCommand(COMANDO_BOTON_AGREGAR_CANCION);
+		btnAbrir.addActionListener(panelAcciones);
+		btnAbrir.setActionCommand(BTN_ABRIR);
 		btnAbrir.setToolTipText("Abrir Archivo");
 		
 		btnGuardar = new JButton();
 		btnGuardar.setIcon(new ImageIcon(getClass().getResource(
 				"/img/saveFile.png")));
 		btnGuardar.setFocusable(false);
+		btnGuardar.addActionListener(panelAcciones);
+		btnGuardar.setActionCommand(BTN_GUARDAR);
 		btnGuardar.setToolTipText("Guardar Archivo");
 		
 		btnMostrarInfoCiudad = new JButton();
 		btnMostrarInfoCiudad.setIcon(new ImageIcon(getClass().getResource(
 				"/img/city.png")));
 		btnMostrarInfoCiudad.setFocusable(false);
+		btnMostrarInfoCiudad.addActionListener(panelAcciones);
+		btnMostrarInfoCiudad.setActionCommand(BTN_INFOCITY);
 		btnMostrarInfoCiudad.setToolTipText("Muestra la información de una ciudad");
 		
 		btnMostrarInfoVia = new JButton();
 		btnMostrarInfoVia.setIcon(new ImageIcon(getClass().getResource(
 				"/img/road.png")));
 		btnMostrarInfoVia.setFocusable(false);
+		btnMostrarInfoVia.addActionListener(panelAcciones);
+		btnMostrarInfoVia.setActionCommand(BTN_INFOROAD);
 		btnMostrarInfoVia.setToolTipText("Muestra la información de una vía");
 
 		// M E N U    B A R 
@@ -119,13 +139,17 @@ public class VentanaPrincipal extends JFrame{
 		
 		//Abrir
 		itemAbrir = new JMenuItem("Abrir");
+		itemAbrir.addActionListener(panelAcciones);
+		itemAbrir.setActionCommand(COMANDO_ABRIR);
 		
 		//Guardar
 		itemGuardar= new JMenuItem("Guardar");
+		itemGuardar.addActionListener(panelAcciones);
+		itemGuardar.setActionCommand(COMANDO_GUARDAR);
 		//Salir
 		itemSalir = new JMenuItem("Salir");
-		//itemSalir.addActionListener(eventos);
-		//itemSalir.setActionCommand(COMANDO_SALIR)
+		itemSalir.addActionListener(panelAcciones);
+		itemSalir.setActionCommand(COMANDO_SALIR);
 		
 		
 		//MENU AYUDA
@@ -133,6 +157,8 @@ public class VentanaPrincipal extends JFrame{
 		
 		//About
 		itemAbout = new JMenuItem("Acerca de");
+		itemAbout.addActionListener(panelAcciones);
+		itemAbout.setActionCommand(COMANDO_ABOUT);
 		
 		menuArchivo.add(itemAbrir);
 		menuArchivo.add(itemGuardar);
@@ -159,4 +185,8 @@ public class VentanaPrincipal extends JFrame{
 		add(mapa, BorderLayout.CENTER);
 		add(panelAcciones, BorderLayout.SOUTH);
 	}
+	public void ShowAbout(){
+		about.setVisible(true);
+	}
+	
 }

@@ -18,8 +18,9 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private JPanel panelDerecha;
 	private PanelMapa panelMapa;
 	private boolean[] presionado;
-	
+	private VentanaPrincipal principal;
 	public PanelAcciones(VentanaPrincipal ven) {
+		this.principal = ven;
 		setPreferredSize(new Dimension((ven.getWidth()),200));
 		setLayout(new GridLayout(1, 3));
 		
@@ -125,6 +126,9 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			presionado[1] = false;
 			break;
+		case VentanaPrincipal.COMANDO_ABOUT:
+			principal.ShowAbout();
+		break;
 		default:
 			break;
 		}

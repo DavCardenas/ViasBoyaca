@@ -55,7 +55,7 @@ public class PanelAbout extends JDialog{
        jPanelText.setLayout(new BorderLayout());
        
        
-        jTextAbout = new JTextArea("                     VIAS BOYACÁ\n"
+        jTextAbout = new JTextArea("                   VIAS BOYACÁ\n"
         	   +"                    Versión: 1.0\n"
         	   +"                         2014\n"
         	   +"                    CONTACTO \n"
