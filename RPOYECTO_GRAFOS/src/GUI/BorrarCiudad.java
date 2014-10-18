@@ -30,4 +30,8 @@ public class BorrarCiudad extends JDialog {
 			modelCiudades.addElement(ciudad.getNombre());
 		}
 	}
+	public void showBorrarCiudad(){
+		BorrarCiudad borrarCiudad = new BorrarCiudad();
+		borrarCiudad.setVisible(true);
+	}
 }

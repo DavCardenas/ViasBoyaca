@@ -13,12 +13,19 @@ import javax.swing.LayoutFocusTraversalPolicy;
 public class PanelBorrar extends JPanel{
 
 	private JButton btnBorrarCiudad;
+
 	private JButton btnBorrarVia;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
 	
-	public PanelBorrar(VentanaPrincipal ven) {
+	public static final String BTN_BORRAR_CIUDAD = "BORRARC";
+	public static final String BTN_BORRAR_VIA = "BORRARV";
+	
+	
+	
+	public PanelBorrar(VentanaPrincipal ven, PanelAcciones panelAcciones) {
+	
 		setPreferredSize(new Dimension((int)(ven.getWidth()*0.33), 200));
 		
 		gridbag = new GridBagLayout();
@@ -26,10 +33,14 @@ public class PanelBorrar extends JPanel{
 		setLayout(gridbag);
 		
 		btnBorrarCiudad = new JButton("Borrar Ciudad");
+		btnBorrarCiudad.addActionListener(panelAcciones);
+		btnBorrarCiudad.setActionCommand(BTN_BORRAR_CIUDAD);
 		gbc = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnBorrarCiudad, gbc);
 		
 		btnBorrarVia = new JButton("Borrar Via");
+		btnBorrarCiudad.addActionListener(panelAcciones);
+		btnBorrarCiudad.setActionCommand(BTN_BORRAR_VIA);
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnBorrarVia, gbc);
 		
