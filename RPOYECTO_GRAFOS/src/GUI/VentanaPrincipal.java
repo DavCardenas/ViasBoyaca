@@ -45,7 +45,6 @@ public class VentanaPrincipal extends JFrame{
 	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
 	private PanelAbout about;
-	private BorrarCiudad borrarCiudad;
 	
 	public static final String BTN_ABRIR = "ABRIR_ARCHIVO";
 	public static final String BTN_GUARDAR = "GUARDAR_ARCHIVO";
@@ -86,7 +85,6 @@ public class VentanaPrincipal extends JFrame{
 		setLayout(new BorderLayout());
 		
 		boyaca = new ViasBoyaca();
-		borrarCiudad = new BorrarCiudad(this, panelAcciones);
 		
 		panelAcciones = new PanelAcciones(this);
 		mapa = new PanelMapa(this,boyaca,panelAcciones);
@@ -190,7 +188,12 @@ public class VentanaPrincipal extends JFrame{
 	public void ShowAbout(){
 		about.setVisible(true);
 	}
-	public void actualizarCiudades(){
-		borrarCiudad.actualizarCiudades(boyaca.getCiudades());
+	public ViasBoyaca getBoyaca() {
+		return boyaca;
 	}
+	public void setBoyaca(ViasBoyaca boyaca) {
+		this.boyaca = boyaca;
+	}
+	
+	
 }

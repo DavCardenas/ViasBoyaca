@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import logic.ViasBoyaca;
+
 public class PanelAcciones extends JPanel implements ActionListener{
 
 	private PanelCrearCiudad panelCrearCiudad;
@@ -21,6 +23,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private boolean[] presionado;
 	private BorrarCiudad borrarCiudad;
 	private VentanaPrincipal principal;
+	
 	public PanelAcciones(VentanaPrincipal ven) {
 		this.principal = ven;
 		setPreferredSize(new Dimension((ven.getWidth()),200));
@@ -43,6 +46,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		
 		panelBorrar = new PanelBorrar(ven, this);
 		panelBorrar.setBounds(0, 0, panelBorrar.getWidth(), panelBorrar.getHeight());
+		
 		borrarCiudad = new BorrarCiudad(ven, this);
 		borrarCiudad.setVisible(false);
 		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
@@ -92,8 +96,6 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		this.panelCrearCiudad = panelCrearCiudad;
 	}
 
-
-
 	public PanelCrearVia getPanelCrearVia() {
 		return panelCrearVia;
 	}
@@ -140,16 +142,14 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			break;
 		case VentanaPrincipal.COMANDO_ABOUT:
 			principal.ShowAbout();
-		break;
+			break;
 		case PanelBorrar.BTN_BORRAR_CIUDAD:
-			principal.actualizarCiudades();
+			borrarCiudad.actualizarCiudades(principal.getBoyaca().getCiudades());
 			panelBorrar.setVisible(false);
 			borrarCiudad.setVisible(true);
-		break;
-		case BorrarCiudad.BTN_VOLVER:
-			borrarCiudad.setVisible(false);
-			panelBorrar.setVisible(true);
-		break;
+		case PanelCrearVia.BTN_CREAR_VIA:
+			
+			break;
 		default:
 			break;
 		}
