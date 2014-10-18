@@ -98,7 +98,7 @@ public class PanelCrearVia extends JPanel{
 		if (verificarDatos()) {
 			via.setLongitud(Integer.parseInt(txtLongitud.getText()));
 			via.setTiempo(Integer.parseInt(txtLongitud.getText()));
-			via.setEstado((String)cbxEstado.getSelectedItem());
+			via.setEstado(cbxEstado.getSelectedItem().toString());
 			via.getVelocidad()[0]=Integer.parseInt(txtLongitud.getText());
 		}
 	}
