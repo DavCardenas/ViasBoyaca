@@ -30,6 +30,7 @@ public class ViasBoyaca {
 		return viaL;
 	}
 	public void borrarCiudad(int index){
+		ciudades.remove(index);
 	}
 	public void boorrarVia(Ciudad cInicial, Ciudad cFinal){
 	}
