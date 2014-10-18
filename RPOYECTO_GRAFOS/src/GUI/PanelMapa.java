@@ -67,7 +67,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		repaint();
 	}
 	
-	public void crearVia(MouseEvent e) {
+	public void crearVia() {
 		Via via = new Via();
 		if (ciudades[0]!=null&&ciudades[1]!=null) {
 			panelAcciones.getPanelCrearVia().enviarDatos(via);
