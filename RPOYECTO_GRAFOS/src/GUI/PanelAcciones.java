@@ -147,6 +147,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			borrarCiudad.actualizarCiudades(principal.getBoyaca().getCiudades());
 			panelBorrar.setVisible(false);
 			borrarCiudad.setVisible(true);
+			break;
 		case PanelCrearVia.BTN_CREAR_VIA:
 			panelMapa.crearVia();
 			panelMapa.limpiarCiudades();
