@@ -67,7 +67,8 @@ public class PanelMapa extends JPanel implements MouseListener {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(new ImageIcon(getClass().getResource("/img/mapa.png")).getImage(), 0, 0, null);
+		//g.drawImage(new ImageIcon(getClass().getResource("/img/mapa.png")).getImage(), 0, 0, null);
+		g.drawImage(new ImageIcon(getClass().getResource("/img/mapa2.png")).getImage(), 300, 0, null);
 		this.setOpaque(false);
 		if (!viasBoyaca.getCiudades().isEmpty()) {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
