@@ -44,6 +44,7 @@ public class VentanaPrincipal extends JFrame{
 	private JMenu menuAyuda;
 	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
+	private PanelAbout about;
 
 	public VentanaPrincipal() {
 		
@@ -77,6 +78,7 @@ public class VentanaPrincipal extends JFrame{
 		panelAcciones = new PanelAcciones(this);
 		mapa = new PanelMapa(this,boyaca,panelAcciones);
 		panelAcciones.setPanelMapa(mapa);
+		about = new PanelAbout(panelAcciones, this);
 		//mapa.setPreferredSize(new Dimension(mapa.ANCHO, mapa.ALTO));
 		
 		// T O L B A R
@@ -151,8 +153,8 @@ public class VentanaPrincipal extends JFrame{
 		toolBar.add(btnMostrarInfoVia);
 		toolBar.addSeparator();
 
-		
 		setJMenuBar(menuBar);
+		
 		
 		
 		add(toolBar, BorderLayout.NORTH);

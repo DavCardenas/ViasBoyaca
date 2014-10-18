@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class PanelAcciones extends JPanel implements ActionListener{
 
 	private PanelCrearCiudad panelCrearCiudad;
+	private PanelAbout panelAbout;
 	private PanelCrearVia panelCrearVia;
 	private PanelBorrar panelBorrar;
 	private PanelCrear panelCrear;
@@ -41,6 +42,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		panelBorrar = new PanelBorrar(ven);
 		
 		panelRecorrido = new PanelRecorrido(ven);
+		
 		
 		presionado = new boolean[2];
 		
@@ -125,6 +127,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			presionado[1] = false;
 			break;
+		
 		default:
 			break;
 		}
