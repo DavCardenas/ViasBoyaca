@@ -17,7 +17,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private PanelRecorrido panelRecorrido;
 	private JPanel panelDerecha;
 	private PanelMapa panelMapa;
-	private boolean presionado;
+	private boolean[] presionado;
 	
 	public PanelAcciones(VentanaPrincipal ven) {
 		setPreferredSize(new Dimension((ven.getWidth()),200));
@@ -25,10 +25,10 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		
 		panelCrear = new PanelCrear(ven, this);
 		panelCrear.setBounds(0, 0, panelCrear.getWidth(), panelCrear.getHeight());
-		panelCrearCiudad = new PanelCrearCiudad(ven);
+		panelCrearCiudad = new PanelCrearCiudad(ven,this);
 		panelCrearCiudad.setVisible(false);
 		panelCrearCiudad.setBounds(0, 0, panelCrearCiudad.getWidth(), panelCrearCiudad.getHeight());
-		panelCrearVia = new PanelCrearVia(ven);
+		panelCrearVia = new PanelCrearVia(ven, this);
 		panelCrearVia.setVisible(false);
 		panelCrearVia.setBounds(0, 0, panelCrearVia.getWidth(), panelCrearVia.getHeight());
 		
@@ -42,7 +42,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		
 		panelRecorrido = new PanelRecorrido(ven);
 		
-		presionado = false;
+		presionado = new boolean[2];
 		
 		add(panelDerecha);
 		add(panelRecorrido);
@@ -89,16 +89,13 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		this.panelCrearVia = panelCrearVia;
 	}
 
-	public boolean isPresionado() {
+	public boolean[] getPresionado() {
 		return presionado;
 	}
 
-
-	public void setPresionado(boolean presionado) {
+	public void setPresionado(boolean[] presionado) {
 		this.presionado = presionado;
 	}
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -109,13 +106,24 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelCrearVia.setVisible(false);
 			panelCrearCiudad.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-			presionado = true;
+			presionado[0] = true;
 			break;
 		case PanelCrear.BTN_CREAR_VIA:
 			panelCrear.setVisible(false);
 			panelCrearCiudad.setVisible(false);
 			panelCrearVia.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+			presionado[1] = true;
+			break;
+		case PanelCrearCiudad.BTN_VOLVER:
+			panelCrear.setVisible(true);
+			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			presionado[0] = false;
+			break;
+		case PanelCrearVia.BTN_VOLVER:
+			panelCrear.setVisible(true);
+			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			presionado[1] = false;
 			break;
 		default:
 			break;

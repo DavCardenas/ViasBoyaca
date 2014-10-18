@@ -24,10 +24,13 @@ public class PanelCrearVia extends JPanel{
 	private JTextField txtVelocidad;
 	private JComboBox<Sentido> cbxSentido;
 	private JButton btnAceptar;
+	private JButton btnVolver;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public PanelCrearVia(VentanaPrincipal ven) {
+	public final static String BTN_VOLVER = "BTN_VOLVER_VIA";
+	
+	public PanelCrearVia(VentanaPrincipal ven,PanelAcciones ppAcciones) {
 		
 		setPreferredSize(new Dimension((int)(ven.getWidth()*0.33), 200));
 		gridbag = new GridBagLayout();
@@ -66,7 +69,15 @@ public class PanelCrearVia extends JPanel{
 		add(cbxSentido, gbc);
 		
 		btnAceptar = new JButton("Aceptar");
-		gbc = new GridBagConstraints(0, 4, 2, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		gbc = new GridBagConstraints(0, 4, 2, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnAceptar, gbc);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(ppAcciones);
+		btnVolver.setActionCommand(BTN_VOLVER);
+		gbc = new GridBagConstraints(1, 4, 2, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		add(btnVolver, gbc);
 	}
+	
+	
 }

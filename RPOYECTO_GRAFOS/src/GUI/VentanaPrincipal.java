@@ -87,7 +87,7 @@ public class VentanaPrincipal extends JFrame{
 
 		btnAbrir = new JButton();
 		btnAbrir.setIcon(new ImageIcon(getClass().getResource(
-				"/Img/openFile.png")));
+				"/img/openFile.png")));
 		btnAbrir.setFocusable(false);
 		//btnCrearCiudad.addActionListener(eventos);
 		//btnCrearCiudad.setActionCommand(COMANDO_BOTON_AGREGAR_CANCION);
@@ -95,7 +95,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		btnGuardar = new JButton();
 		btnGuardar.setIcon(new ImageIcon(getClass().getResource(
-				"/Img/saveFile.png")));
+				"/img/saveFile.png")));
 		btnGuardar.setFocusable(false);
 		btnGuardar.setToolTipText("Guardar Archivo");
 		

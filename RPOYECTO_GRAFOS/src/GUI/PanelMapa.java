@@ -80,7 +80,7 @@ public class PanelMapa extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		if (panelAcciones.isPresionado()) {
+		if (panelAcciones.getPresionado()[0]) {
 			if (panelAcciones.validarNombre()) {
 				this.crearCiudad(arg0);
 			}else {

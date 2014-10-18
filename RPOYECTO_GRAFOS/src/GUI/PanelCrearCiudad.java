@@ -17,11 +17,14 @@ public class PanelCrearCiudad extends JPanel{
 	private JLabel lbNombre;
 	private JTextField txtNombre;
 	private JButton btnAceptar;
+	private JButton btnVolver;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	private String nombre;
 	
-	public PanelCrearCiudad(VentanaPrincipal ven) {
+	public final static String BTN_VOLVER = "VOLVER";
+	
+	public PanelCrearCiudad(VentanaPrincipal ven,PanelAcciones ppAcciones) {
 		
 		nombre = "";
 		
@@ -46,8 +49,14 @@ public class PanelCrearCiudad extends JPanel{
 				txtNombre.setText("");
 			}
 		});
-		gbc = new GridBagConstraints(0, 1, 2, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnAceptar, gbc);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand(BTN_VOLVER);
+		btnVolver.addActionListener(ppAcciones);
+		gbc = new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		add(btnVolver, gbc);
 	}
 	
 	public String getNombre() {
