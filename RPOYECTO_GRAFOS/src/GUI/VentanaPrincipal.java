@@ -32,10 +32,17 @@ public class VentanaPrincipal extends JFrame{
 	private ViasBoyaca boyaca;
 	private PanelMapa mapa;
 	private JToolBar toolBar;
-	private JButton btnCrearCiudad;
+	private JButton btnAbrir;
+	private JButton btnGuardar;
+	private JButton btnMostrarInfoCiudad;
+	private JButton btnMostrarInfoVia;
 	private JMenuBar menuBar;
 	private JMenu menuArchivo;
+	private JMenuItem itemAbrir;
+	private JMenuItem itemGuardar;
 	private JMenuItem itemSalir;
+	private JMenu menuAyuda;
+	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
 
 	public VentanaPrincipal() {
@@ -78,29 +85,70 @@ public class VentanaPrincipal extends JFrame{
 
 		// Botones tolbarr
 
-		btnCrearCiudad = new JButton("asd");
-		//btnCrearCiudad.setIcon(new ImageIcon(getClass().getResource(
-			//	"/Img/AddSong.png")));
-		btnCrearCiudad.setFocusable(false);
+		btnAbrir = new JButton();
+		btnAbrir.setIcon(new ImageIcon(getClass().getResource(
+				"/Img/openFile.png")));
+		btnAbrir.setFocusable(false);
 		//btnCrearCiudad.addActionListener(eventos);
 		//btnCrearCiudad.setActionCommand(COMANDO_BOTON_AGREGAR_CANCION);
-		btnCrearCiudad.setToolTipText("Agregar Ciudad");
+		btnAbrir.setToolTipText("Abrir Archivo");
+		
+		btnGuardar = new JButton();
+		btnGuardar.setIcon(new ImageIcon(getClass().getResource(
+				"/Img/saveFile.png")));
+		btnGuardar.setFocusable(false);
+		btnGuardar.setToolTipText("Guardar Archivo");
+		
+		btnMostrarInfoCiudad = new JButton();
+		btnMostrarInfoCiudad.setIcon(new ImageIcon(getClass().getResource(
+				"/img/city.png")));
+		btnMostrarInfoCiudad.setFocusable(false);
+		btnMostrarInfoCiudad.setToolTipText("Muestra la información de una ciudad");
+		
+		btnMostrarInfoVia = new JButton();
+		btnMostrarInfoVia.setIcon(new ImageIcon(getClass().getResource(
+				"/img/road.png")));
+		btnMostrarInfoVia.setFocusable(false);
+		btnMostrarInfoVia.setToolTipText("Muestra la información de una vía");
 
 		// M E N U    B A R 
 		menuBar = new JMenuBar();
 
 		// MENU ARCHIVO
 		menuArchivo = new JMenu("Archivo");
-
+		
+		//Abrir
+		itemAbrir = new JMenuItem("Abrir");
+		
+		//Guardar
+		itemGuardar= new JMenuItem("Guardar");
 		//Salir
 		itemSalir = new JMenuItem("Salir");
 		//itemSalir.addActionListener(eventos);
 		//itemSalir.setActionCommand(COMANDO_SALIR)
 		
+		
+		//MENU AYUDA
+		menuAyuda = new JMenu("Ayuda");
+		
+		//About
+		itemAbout = new JMenuItem("Acerca de");
+		
+		menuArchivo.add(itemAbrir);
+		menuArchivo.add(itemGuardar);
 		menuArchivo.add(itemSalir);
-
+		
+		menuAyuda.add(itemAbout);
+		
 		menuBar.add(menuArchivo);
-		toolBar.add(btnCrearCiudad);
+		menuBar.add(menuAyuda);
+		toolBar.add(btnAbrir);
+		toolBar.addSeparator();
+		toolBar.add(btnGuardar);
+		toolBar.addSeparator();
+		toolBar.add(btnMostrarInfoCiudad);
+		toolBar.addSeparator();
+		toolBar.add(btnMostrarInfoVia);
 		toolBar.addSeparator();
 
 		
