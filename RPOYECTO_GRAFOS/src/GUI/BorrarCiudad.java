@@ -51,6 +51,7 @@ public class BorrarCiudad extends JPanel{
 		add(cbxCiudades, gbc);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnVolver.setActionCommand(BTN_ACEPTAR);
 		btnAceptar.addActionListener(ppAcciones);
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnAceptar, gbc);
