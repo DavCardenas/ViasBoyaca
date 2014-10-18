@@ -31,6 +31,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 	private boolean encontrar;
 	private Ciudad[] ciudades;
 	private int contador;
+	private int id;
 	private Ciudad Caux;
 	
 	public PanelMapa(VentanaPrincipal ven, ViasBoyaca vias, PanelAcciones ppAcciones) {
@@ -42,6 +43,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		viasBoyaca = vias;
 		ciudades = new Ciudad[2];
 		contador = 0;
+		id = 0;
 
 		btnZoom1 = new JButton("Zoom (+)");
 		btnZoom1.setBounds(120, 350, 90, 25);
@@ -68,12 +70,15 @@ public class PanelMapa extends JPanel implements MouseListener {
 	}
 	
 	public void crearVia() {
-		Via via = new Via();
 		if (ciudades[0]!=null&&ciudades[1]!=null) {
+			id = + 1;
+			Via via = new Via();
 			panelAcciones.getPanelCrearVia().enviarDatos(via);
 			via.setCiudadInicial(ciudades[0]);
 			via.setCiudadFinal(ciudades[1]);
+			via.setId(id);
 			viasBoyaca.getVias().add(via);
+		
 		}else {
 			JOptionPane.showMessageDialog(this, "No se puede crear la via");
 		}

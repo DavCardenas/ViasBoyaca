@@ -8,8 +8,10 @@ public class Via {
 	private int [] velocidad;
 	private Ciudad ciudadInicial;
 	private Ciudad ciudadFinal;
+	private int id;
 
 	public Via() {
+		id = 0;
 		longitud = 0;
 		estado = "";
 		tiempo = 0;
@@ -57,5 +59,11 @@ public class Via {
 	}
 	public void setCiudadFinal(Ciudad ciudadFinal) {
 		this.ciudadFinal = ciudadFinal;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
