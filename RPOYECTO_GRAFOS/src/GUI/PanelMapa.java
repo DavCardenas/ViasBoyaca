@@ -27,7 +27,6 @@ public class PanelMapa extends JPanel implements MouseListener {
 	private JButton btnZoom1;
 	private JButton btnZoom2;
 	private JScrollPane scrollPane;
-	private CiudadGUI ciudadGUI;
 	private ViasBoyaca viasBoyaca;
 	private PanelAcciones panelAcciones;
 	private boolean encontrar;
