@@ -71,7 +71,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 	
 	public void crearVia() {
 		if (ciudades[0]!=null&&ciudades[1]!=null) {
-			id +=1;
+			id += 1;
 			Via via = new Via();
 			panelAcciones.getPanelCrearVia().enviarDatos(via);
 			via.setCiudadInicial(ciudades[0]);
@@ -99,6 +99,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		if (!viasBoyaca.getVias().isEmpty()) {
 			ArrayList<Via> auxV = viasBoyaca.getVias();
 			for (Via via : auxV) {
+				g.drawString(via.getId()+"", via.calcularPosText().x, via.calcularPosText().y);
 				g.drawLine(via.getCiudadInicial().getPosX(), via.getCiudadInicial().getPosY(), via.getCiudadFinal().getPosX(), via.getCiudadFinal().getPosY());
 			}
 		}

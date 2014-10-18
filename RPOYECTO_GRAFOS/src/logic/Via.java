@@ -1,5 +1,7 @@
 package logic;
 
+import java.awt.Point;
+
 public class Via {
 
 	private int longitud;
@@ -65,5 +67,24 @@ public class Via {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public Point calcularPosText() {
+		int posx;
+		int posy;
+		posx = Math.abs(((ciudadFinal.getPosX() - ciudadInicial.getPosX())/2));
+		posy = Math.abs(((ciudadFinal.getPosY() - ciudadInicial.getPosY())/2));
+		if (ciudadInicial.getPosX()<ciudadFinal.getPosX()) {
+			posx+=ciudadInicial.getPosX();
+		}else {
+			posx= ciudadInicial.getPosX()-posx;
+		}
+		
+		if (ciudadInicial.getPosY()<ciudadFinal.getPosY()) {
+			posy+=ciudadInicial.getPosY();
+		}else {
+			posy= ciudadInicial.getPosY()-posy;
+		}
+		return new Point(posx, posy);
 	}
 }
