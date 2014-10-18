@@ -33,7 +33,8 @@ public class PanelMapa extends JPanel implements MouseListener {
 	private boolean encontrar;
 	private Ciudad[] ciudades;
 	private int contador;
-
+	private Ciudad Caux;
+	
 	public PanelMapa(VentanaPrincipal ven, ViasBoyaca vias, PanelAcciones ppAcciones) {
 		setBackground(Color.blue);
 		// this.setPreferredSize(new Dimension(ANCHO, ALTO));
@@ -67,6 +68,10 @@ public class PanelMapa extends JPanel implements MouseListener {
 		viasBoyaca.getCiudades().add(aux);
 		repaint();
 	}
+	
+	public void crearVia(MouseEvent e) {
+
+	}
 
 	@Override
 	public void paint(Graphics g) {
@@ -95,11 +100,15 @@ public class PanelMapa extends JPanel implements MouseListener {
 			contador+=1;
 			if (!viasBoyaca.getCiudades().isEmpty()) {
 				if (contador == 1) {
-					ciudades[0] = buscarCiudad(arg0.getX(), arg0.getY());
-					System.out.println(ciudades[0].getNombre()+ " Ciudad 1");
+					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
+						ciudades[0] = buscarCiudad(arg0.getX(), arg0.getY());
+						System.out.println(ciudades[0].getNombre()+ " Ciudad 1");
+					}
 				}else if (contador == 2) {
-					ciudades[1] = buscarCiudad(arg0.getX(), arg0.getY());
-					System.out.println(ciudades[1].getNombre()+ " Ciudad 2");
+					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
+						ciudades[1] = buscarCiudad(arg0.getX(), arg0.getY());
+						System.out.println(ciudades[1].getNombre()+ " Ciudad 2");
+					}
 				}
 				encontrar = false;
 			}
@@ -109,20 +118,20 @@ public class PanelMapa extends JPanel implements MouseListener {
 		}
 	}
 
-	public void calcularColision(int posX, int posY, Ciudad ciudad) {
+	public Ciudad calcularColision(int posX, int posY, Ciudad ciudad, int i) {
 		if (posX >= ciudad.getPosX() && posX <= ciudad.getPosX() + 6) {
 			if (posY >= ciudad.getPosY() && posY <= ciudad.getPosY() + 6) {
 				encontrar = true;
+				return viasBoyaca.getCiudades().get(i);
 			}
 		}
+		return null;
 	}
 
 	public Ciudad buscarCiudad(int posX, int posY) {
-		Ciudad Caux = null;
 		ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 		for (int i = 0; (i < aux.size()) && !encontrar; i++) {
-			calcularColision(posX, posY, aux.get(i));
-			Caux = aux.get(i);
+			Caux = calcularColision(posX, posY, aux.get(i), i);
 		}
 		return Caux;
 	}
