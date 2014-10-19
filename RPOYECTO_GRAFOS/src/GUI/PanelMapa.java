@@ -93,11 +93,13 @@ public class PanelMapa extends JPanel implements MouseListener {
 		if (!viasBoyaca.getCiudades().isEmpty()) {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 			for (Ciudad ciudad : aux) {
+				g.setColor(ciudad.getColor());
 				g.fillOval(ciudad.getPosX(), ciudad.getPosY(), 6, 6);
 			}
 		}
 		if (!viasBoyaca.getVias().isEmpty()) {
 			ArrayList<Via> auxV = viasBoyaca.getVias();
+			g.setColor(Color.black);
 			for (Via via : auxV) {
 				g.drawString(via.getId()+"", via.calcularPosText().x, via.calcularPosText().y);
 				g.drawLine(via.getCiudadInicial().getPosX(), via.getCiudadInicial().getPosY(), via.getCiudadFinal().getPosX(), via.getCiudadFinal().getPosY());
@@ -120,10 +122,14 @@ public class PanelMapa extends JPanel implements MouseListener {
 			if (!viasBoyaca.getCiudades().isEmpty()) {
 				if (contador == 1) {
 					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
+						buscarCiudad(arg0.getX(), arg0.getY()).setColor(Color.RED);
+						repaint();
 						ciudades[0] = buscarCiudad(arg0.getX(), arg0.getY());
 					}
 				}else if (contador == 2) {
 					if (buscarCiudad(arg0.getX(), arg0.getY()) != null) {
+						buscarCiudad(arg0.getX(), arg0.getY()).setColor(Color.BLUE);
+						repaint();
 						ciudades[1] = buscarCiudad(arg0.getX(), arg0.getY());
 					}
 				}
@@ -136,8 +142,11 @@ public class PanelMapa extends JPanel implements MouseListener {
 	}
 	
 	public void limpiarCiudades() {
+		ciudades[0].setColor(Color.BLACK);
+		ciudades[1].setColor(Color.BLACK);
 		ciudades[0] = null;
 		ciudades[1] = null;
+		repaint();
 	}
 
 	public Ciudad calcularColision(int posX, int posY, Ciudad ciudad, int i) {

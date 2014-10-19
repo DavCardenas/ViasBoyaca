@@ -7,8 +7,10 @@ public class Ciudad {
 	private String nombre;
 	private int posX;
 	private int posY;
+	private Color color;
 	
 	public Ciudad() {
+		color = Color.BLACK;
 		nombre = null;
 		posX = 0;
 		posY = 0;
@@ -36,6 +38,11 @@ public class Ciudad {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
-	
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
 
 }
