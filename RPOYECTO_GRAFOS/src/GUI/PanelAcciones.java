@@ -135,7 +135,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelCrearVia.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 			presionado[1] = true;
-			JOptionPane.showMessageDialog(this, "Para crear una via "
+			JOptionPane.showMessageDialog(panelMapa, "Para crear una via "
 					+ "primero tendra que seleccionar 2 ciudades \n"
 					+ "y llenar el formulario luego dar clic en el boton aceptar \n"
 					+ "y finalmente se creara la via", "Crear Via", JOptionPane.INFORMATION_MESSAGE);
