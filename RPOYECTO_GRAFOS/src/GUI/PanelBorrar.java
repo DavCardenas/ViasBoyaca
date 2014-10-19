@@ -43,6 +43,5 @@ public class PanelBorrar extends JPanel{
 		btnBorrarVia.addActionListener(panelAcciones);
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnBorrarVia, gbc);
-		
 	}
 }

@@ -22,6 +22,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	private PanelMapa panelMapa;
 	private boolean[] presionado;
 	private BorrarCiudad borrarCiudad;
+	private BorrarVia borrarVia;
 	private VentanaPrincipal principal;
 	
 	public PanelAcciones(VentanaPrincipal ven) {
@@ -51,6 +52,9 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		borrarCiudad.setVisible(false);
 		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
 		
+		borrarVia = new BorrarVia(ven, this);
+		borrarVia.setVisible(false);
+		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
 		
 		panelRecorrido = new PanelRecorrido(ven);
 		
@@ -58,6 +62,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		panelIzquierda.setPreferredSize(this.getPreferredSize());
 		panelIzquierda.add(panelBorrar);
 		panelIzquierda.add(borrarCiudad);
+		panelIzquierda.add(borrarVia);
 		
 		presionado = new boolean[2];
 		
@@ -161,6 +166,20 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			borrarCiudad.actualizarCiudades(principal.getBoyaca().getCiudades());
 			panelMapa.repaint();
 			break;
+		case PanelBorrar.BTN_BORRAR_VIA:
+			borrarVia.actualizarVias(principal.getBoyaca().getVias());
+			panelBorrar.setVisible(false);
+			borrarVia.setVisible(true);
+		break;
+		case BorrarVia.BTN_VOLVER:
+			borrarVia.setVisible(false);
+			panelBorrar.setVisible(true);
+		break;
+		case BorrarVia.BTN_ACEPTAR:
+			borrarVia.eliminarVia(principal.getBoyaca().getVias());
+			borrarVia.actualizarVias(principal.getBoyaca().getVias());
+			panelMapa.repaint();
+		break;
 		default:
 			break;
 		}

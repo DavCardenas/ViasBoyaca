@@ -63,7 +63,7 @@ public class BorrarVia extends JPanel{
 			modelVias.addElement(via.getId());
 		}
 	}
-	public ArrayList<Via> eliminarCiudad(ArrayList<Via> vias){
+	public ArrayList<Via> eliminarVia(ArrayList<Via> vias){
 		if (!vias.isEmpty()) {
 			vias.remove(cbxVias.getSelectedIndex());
 		}
