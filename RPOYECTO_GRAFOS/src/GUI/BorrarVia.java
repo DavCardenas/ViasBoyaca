@@ -14,10 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import logic.Ciudad;
+import logic.Via;
 
 public class BorrarVia extends JPanel{
-	private JComboBox cbxCiudades;
-	private DefaultComboBoxModel modelCiudades;
+	private JComboBox cbxVias;
+	private DefaultComboBoxModel modelVias;
 	private JLabel lbNombre;
 	private JTextField txtNombre;
 	private JButton btnAceptar;
@@ -34,14 +35,14 @@ public class BorrarVia extends JPanel{
 		gridbag = new GridBagLayout();
 		setLayout(gridbag);
 		
-		lbNombre = new JLabel("Ciudad");
+		lbNombre = new JLabel("Via");
 		gbc = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(lbNombre, gbc);
 		
-		modelCiudades = new DefaultComboBoxModel<>();
-		cbxCiudades = new JComboBox<>(modelCiudades);
+		modelVias = new DefaultComboBoxModel<>();
+		cbxVias = new JComboBox<>(modelVias);
 		gbc = new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
-		add(cbxCiudades, gbc);
+		add(cbxVias, gbc);
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setActionCommand(BTN_ACEPTAR);
@@ -56,17 +57,17 @@ public class BorrarVia extends JPanel{
 		add(btnVolver, gbc);
 	}
 	
-	public void actualizarVias(ArrayList<Ciudad> Ciudades) {
-		modelCiudades.removeAllElements();
-		for (Ciudad ciudad : Ciudades) {
-			modelCiudades.addElement(ciudad.getNombre());
+	public void actualizarVias(ArrayList<Via> Vias) {
+		modelVias.removeAllElements();
+		for (Via via : Vias) {
+			modelVias.addElement(via.getId());
 		}
 	}
-	public ArrayList<Ciudad> eliminarCiudad(ArrayList<Ciudad> ciudades){
-		if (!ciudades.isEmpty()) {
-			ciudades.remove(cbxCiudades.getSelectedIndex());
+	public ArrayList<Via> eliminarCiudad(ArrayList<Via> vias){
+		if (!vias.isEmpty()) {
+			vias.remove(cbxVias.getSelectedIndex());
 		}
-		return ciudades;
+		return vias;
 		
 	}
 }
