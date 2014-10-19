@@ -144,8 +144,10 @@ public class PanelMapa extends JPanel implements MouseListener {
 	}
 	
 	public void limpiarCiudades() {
-		ciudades[0].setColor(Color.BLACK);
-		ciudades[1].setColor(Color.BLACK);
+		if (ciudades[0] != null && ciudades[1] != null) {
+			ciudades[0].setColor(Color.BLACK);
+			ciudades[1].setColor(Color.BLACK);
+		}
 		ciudades[0] = null;
 		ciudades[1] = null;
 		repaint();
