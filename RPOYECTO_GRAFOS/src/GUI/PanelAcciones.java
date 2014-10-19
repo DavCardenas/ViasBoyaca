@@ -57,7 +57,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		borrarVia.setVisible(false);
 		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
 		
-		panelRecorrido = new PanelRecorrido(ven);
+		panelRecorrido = new PanelRecorrido(ven,this);
 		
 		panelIzquierda = new JPanel();
 		panelIzquierda.setPreferredSize(this.getPreferredSize());
@@ -134,6 +134,8 @@ public class PanelAcciones extends JPanel implements ActionListener{
 					+ "clic en el boton aceptar \n finalmente "
 					+ "tendra que posicionar el mouse\n en el lugar "
 					+ "deseado y dar clic.","Crear Ciudad", JOptionPane.INFORMATION_MESSAGE);
+			panelRecorrido.actualizarCiudades(principal.getBoyaca().getCiudades());
+			panelRecorrido.repaint();      
 			break;
 		case PanelCrear.BTN_CREAR_VIA:
 			panelCrear.setVisible(false);
