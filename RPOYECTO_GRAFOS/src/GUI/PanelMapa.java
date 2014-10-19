@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -89,6 +90,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 	public void paint(Graphics g) {
 		//g.drawImage(new ImageIcon(getClass().getResource("/img/mapa.png")).getImage(), 0, 0, null);
 		g.drawImage(new ImageIcon(getClass().getResource("/img/mapa2.png")).getImage(), 300, 0, null);
+		g.setFont(new Font("Arial", Font.BOLD, 11));
 		this.setOpaque(false);
 		if (!viasBoyaca.getCiudades().isEmpty()) {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();

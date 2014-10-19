@@ -75,15 +75,15 @@ public class Via {
 		posx = Math.abs(((ciudadFinal.getPosX() - ciudadInicial.getPosX())/2));
 		posy = Math.abs(((ciudadFinal.getPosY() - ciudadInicial.getPosY())/2));
 		if (ciudadInicial.getPosX()<ciudadFinal.getPosX()) {
-			posx+=ciudadInicial.getPosX();
+			posx += ciudadInicial.getPosX() + 5;
 		}else {
-			posx= ciudadInicial.getPosX()-posx;
+			posx = ciudadInicial.getPosX()-posx-5;
 		}
 		
 		if (ciudadInicial.getPosY()<ciudadFinal.getPosY()) {
-			posy+=ciudadInicial.getPosY();
+			posy += ciudadInicial.getPosY()+5;
 		}else {
-			posy= ciudadInicial.getPosY()-posy;
+			posy= ciudadInicial.getPosY()-posy-5;
 		}
 		return new Point(posx, posy);
 	}
