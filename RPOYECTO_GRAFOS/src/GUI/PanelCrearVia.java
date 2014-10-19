@@ -8,6 +8,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -90,6 +91,8 @@ public class PanelCrearVia extends JPanel{
 					return true;
 				}
 			}
+		}else {
+			JOptionPane.showMessageDialog(null, "LLene todo los campos");
 		}
 		return false;
 	}
