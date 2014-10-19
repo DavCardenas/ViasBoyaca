@@ -117,7 +117,9 @@ public class PanelAcciones extends JPanel implements ActionListener{
 	public void setPresionado(boolean[] presionado) {
 		this.presionado = presionado;
 	}
-
+	public void ActualizarCiudadesRecorrido(){
+		panelRecorrido.actualizarCiudades(principal.getBoyaca().getCiudades());
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
@@ -134,8 +136,6 @@ public class PanelAcciones extends JPanel implements ActionListener{
 					+ "clic en el boton aceptar \n finalmente "
 					+ "tendra que posicionar el mouse\n en el lugar "
 					+ "deseado y dar clic.","Crear Ciudad", JOptionPane.INFORMATION_MESSAGE);
-			panelRecorrido.actualizarCiudades(principal.getBoyaca().getCiudades());
-			panelRecorrido.repaint();      
 			break;
 		case PanelCrear.BTN_CREAR_VIA:
 			panelCrear.setVisible(false);
@@ -148,6 +148,9 @@ public class PanelAcciones extends JPanel implements ActionListener{
 					+ "y llenar el formulario luego dar clic en el boton aceptar \n"
 					+ "y finalmente se creara la via.", "Crear Via", JOptionPane.INFORMATION_MESSAGE);
 			break;
+		case PanelCrearCiudad.BTN_ACEPTAR:
+			panelCrearCiudad.datos();
+		break;
 		case PanelCrearCiudad.BTN_VOLVER:
 			panelCrear.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

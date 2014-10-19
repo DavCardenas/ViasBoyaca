@@ -23,6 +23,7 @@ public class PanelCrearCiudad extends JPanel{
 	private String nombre;
 	
 	public final static String BTN_VOLVER = "VOLVER";
+	public final static String BTN_ACEPTAR = "ACEPTARCC";
 	
 	public PanelCrearCiudad(VentanaPrincipal ven,PanelAcciones ppAcciones) {
 		
@@ -41,14 +42,8 @@ public class PanelCrearCiudad extends JPanel{
 		add(txtNombre, gbc);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				nombre = txtNombre.getText();
-				txtNombre.setText("");
-			}
-		});
+		btnAceptar.setActionCommand(BTN_ACEPTAR);
+		btnAceptar.addActionListener(ppAcciones);
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(btnAceptar, gbc);
 		
@@ -72,6 +67,10 @@ public class PanelCrearCiudad extends JPanel{
 			return true;
 		}
 		return false;
+	}
+	public void datos(){
+		nombre = txtNombre.getText();
+		txtNombre.setText("");
 	}
 	
 }

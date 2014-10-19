@@ -67,6 +67,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		aux.setNombre(panelAcciones.getPanelCrearCiudad().getNombre());
 		panelAcciones.getPanelCrearCiudad().setNombre("");
 		viasBoyaca.getCiudades().add(aux);
+		panelAcciones.ActualizarCiudadesRecorrido();
 		repaint();
 	}
 	
