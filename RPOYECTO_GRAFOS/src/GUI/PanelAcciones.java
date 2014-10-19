@@ -127,7 +127,13 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelCrearVia.setVisible(false);
 			panelCrearCiudad.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-			presionado[0] = true;
+			presionado[0] = true; 
+			JOptionPane.showMessageDialog(panelMapa, " Para crear una ciudad "
+					+ "o municipio \n primero tendra que "
+					+ "llenar el formulario \n y luego dar "
+					+ "clic en el boton aceptar \n finalmente "
+					+ "tendra que posicionar el mouse\n en el lugar "
+					+ "deseado y dar clic.","Crear Ciudad", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case PanelCrear.BTN_CREAR_VIA:
 			panelCrear.setVisible(false);
@@ -138,7 +144,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(panelMapa, "Para crear una via "
 					+ "primero tendra que seleccionar 2 ciudades \n"
 					+ "y llenar el formulario luego dar clic en el boton aceptar \n"
-					+ "y finalmente se creara la via", "Crear Via", JOptionPane.INFORMATION_MESSAGE);
+					+ "y finalmente se creara la via.", "Crear Via", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case PanelCrearCiudad.BTN_VOLVER:
 			panelCrear.setVisible(true);
@@ -161,6 +167,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		case PanelCrearVia.BTN_CREAR_VIA:
 			panelMapa.crearVia();
 			panelMapa.limpiarCiudades();
+			panelCrearVia.limpiarCampos();
 			break;
 		case BorrarCiudad.BTN_VOLVER:
 			borrarCiudad.setVisible(false);

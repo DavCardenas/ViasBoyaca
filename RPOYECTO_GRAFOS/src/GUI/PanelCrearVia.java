@@ -97,12 +97,17 @@ public class PanelCrearVia extends JPanel{
 		return false;
 	}
 	
+	public void limpiarCampos() {
+		txtLongitud.setText("");
+		txtTiempo.setText("");
+		txtVelocidad.setText("");
+		cbxEstado.setSelectedIndex(0);
+	}
+	
 	public void enviarDatos(Via via) {
-		if (verificarDatos()) {
 			via.setLongitud(Integer.parseInt(txtLongitud.getText()));
 			via.setTiempo(Integer.parseInt(txtLongitud.getText()));
 			via.setEstado(cbxEstado.getSelectedItem().toString());
 			via.getVelocidad()[0]=Integer.parseInt(txtLongitud.getText());
-		}
 	}
 }
