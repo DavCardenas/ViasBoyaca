@@ -19,7 +19,7 @@ public class PanelCrearVia extends JPanel{
 
 	private JLabel lbLongitud;
 	private JLabel lbTiempo;
-	private JLabel lbSentido;
+	private JLabel lbEstado;
 	private JLabel lbVelocidad;
 	private JTextField txtLongitud;
 	private JTextField txtTiempo;
@@ -51,9 +51,9 @@ public class PanelCrearVia extends JPanel{
 		gbc = new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		add(lbTiempo, gbc);
 		
-		lbSentido = new JLabel("Sentido");
+		lbEstado = new JLabel("Estado");
 		gbc = new GridBagConstraints(0, 3, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
-		add(lbSentido, gbc);
+		add(lbEstado, gbc);
 		
 		txtLongitud = new JTextField(12);
 		gbc = new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
@@ -108,6 +108,6 @@ public class PanelCrearVia extends JPanel{
 			via.setLongitud(Integer.parseInt(txtLongitud.getText()));
 			via.setTiempo(Integer.parseInt(txtLongitud.getText()));
 			via.setEstado(cbxEstado.getSelectedItem().toString());
-			via.getVelocidad()[0]=Integer.parseInt(txtLongitud.getText());
+			via.setVelocidad(Integer.parseInt(txtLongitud.getText()));
 	}
 }

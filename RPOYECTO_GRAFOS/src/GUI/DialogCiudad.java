@@ -34,6 +34,10 @@ public class DialogCiudad extends JDialog {
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
+	
+	public static final String BTN_ACEPTAR = "ACEPTAR_CIUDAD";
+	public static final String BTN_VOLVER = "VOLVER_CIUDAD";
+	
 	public DialogCiudad(VentanaPrincipal principal, Eventos eventos) {
 		
 		setTitle("Información de la Ciudad");
@@ -58,13 +62,13 @@ public class DialogCiudad extends JDialog {
 	    
 	    btnAceptar = new JButton("Aceptar");
 	    btnAceptar.setFocusable(false);
-//		btnAceptar.setActionCommand(BTN_ACEPTAR);
-//		btnAceptar.addActionListener(ppAcciones);
+		btnAceptar.setActionCommand(BTN_ACEPTAR);
+		btnAceptar.addActionListener(eventos);
 	    gbc = new GridBagConstraints(1, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 45), 0, 0);
 	    pnlSuperior.add(btnAceptar, gbc);
 	    
 	    pnlInferior = new JPanel();
-//	    pnlInferior.setBackground(Color.blue);
+
 	    
 	    gridbag = new GridBagLayout();
 	    pnlInferior.setLayout(gridbag);
@@ -73,24 +77,24 @@ public class DialogCiudad extends JDialog {
 		gbc = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		pnlInferior.add(lbNombre, gbc);
 		
-		txtNombre = new JTextField("");
-		txtNombre.setEnabled(false);
-		gbc = new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		txtNombre = new JTextField(12);
+		txtNombre.setEditable(false);
+		gbc = new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 200, 0);
 		pnlInferior.add(txtNombre, gbc);
 		
 		lbCoordenadas = new JLabel("Ubicación");
 		gbc = new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
 		pnlInferior.add(lbCoordenadas, gbc);
 		
-		txtCoordenadas = new JTextField("");
-		txtCoordenadas.setEnabled(false);
-		gbc = new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0);
+		txtCoordenadas = new JTextField(12);
+		txtCoordenadas.setEditable(false);
+		gbc = new GridBagConstraints(1, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 200, 0);
 		pnlInferior.add(txtCoordenadas, gbc);
 		
 		btnVolver = new JButton("Volver");
 		btnVolver.setFocusable(false);
-//		btnVolver.setActionCommand(BTN_VOLVER);
-//		btnVolver.addActionListener(ppAcciones);
+		btnVolver.setActionCommand(BTN_VOLVER);
+		btnVolver.addActionListener(eventos);
 		gbc = new GridBagConstraints(1, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 50), 13, 0);
 		pnlInferior.add(btnVolver, gbc);
 	    
@@ -103,6 +107,13 @@ public class DialogCiudad extends JDialog {
 			modelCiudades.addElement(ciudad.getNombre());
 		}
 	}
-	public void llenarCampos(){
+	public void llenarCamposCiudad(ArrayList<Ciudad> Ciudades){
+		Ciudad aux = Ciudades.get(cbxCiudades.getSelectedIndex());
+		txtNombre.setText(aux.getNombre());
+		txtCoordenadas.setText("Coordenadas: "+aux.getPosX()+", "+aux.getPosY());
+	}
+	public void limpiarCamposCiudad(){
+		txtNombre.setText("");
+		txtCoordenadas.setText("");
 	}
 }

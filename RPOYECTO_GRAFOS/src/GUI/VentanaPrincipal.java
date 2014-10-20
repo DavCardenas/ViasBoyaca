@@ -47,6 +47,7 @@ public class VentanaPrincipal extends JFrame{
 	private Eventos eventos;
 	private DialogAbout about;
 	private DialogCiudad ciudad;
+	private DialogVia via;
 	
 	public static final String BTN_ABRIR = "ABRIR_ARCHIVO";
 	public static final String BTN_GUARDAR = "GUARDAR_ARCHIVO";
@@ -94,6 +95,8 @@ public class VentanaPrincipal extends JFrame{
 		panelAcciones.setPanelMapa(mapa);
 		about = new DialogAbout(eventos, this);
 		ciudad = new DialogCiudad(this, eventos);
+		via = new DialogVia(this, eventos);
+		
 		
 		
 		//mapa.setPreferredSize(new Dimension(mapa.ANCHO, mapa.ALTO));
@@ -205,6 +208,28 @@ public class VentanaPrincipal extends JFrame{
 	public void actualizarCiudadInfo(){
 		ciudad.actualizarCiudades(boyaca.getCiudades());
 	}
-	
-	
+	public void llenarCamposCiudadInfo(){
+		ciudad.llenarCamposCiudad(boyaca.getCiudades());
+	}
+	public void limpiarCamposCiudadInfo(){
+		ciudad.limpiarCamposCiudad();
+	}
+	public void cerrarInfoCiudad(){
+		ciudad.setVisible(false);
+	}
+	public void showInfoRoad(){
+		via.setVisible(true);
+	}
+	public void actualizarViaInfo(){
+		via.actualizarVias(boyaca.getVias());
+	}
+	public void llenarCamposViaInfo(){
+		via.llenarCamposVia(boyaca.getVias());
+	}
+	public void limpiarCamposViaInfo(){
+		via.limpiarCamposVia();
+	}
+	public void cerrarInfoVia(){
+		via.setVisible(false);
+	}
 }

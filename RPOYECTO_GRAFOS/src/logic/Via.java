@@ -7,7 +7,7 @@ public class Via {
 	private int longitud;
 	private String estado;
 	private int tiempo;
-	private int [] velocidad;
+	private int velocidad;
 	private Ciudad ciudadInicial;
 	private Ciudad ciudadFinal;
 	private int id;
@@ -17,7 +17,7 @@ public class Via {
 		longitud = 0;
 		estado = "";
 		tiempo = 0;
-		velocidad = new int [2];
+		velocidad = 0;
 		ciudadInicial = null;
 		ciudadFinal = null;
 	}
@@ -44,10 +44,11 @@ public class Via {
 	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;
 	}
-	public int[] getVelocidad() {
+	
+	public int getVelocidad() {
 		return velocidad;
 	}
-	public void setVelocidad(int[] velocidad) {
+	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
 	public Ciudad getCiudadInicial() {
