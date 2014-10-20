@@ -55,7 +55,7 @@ public class PanelAcciones extends JPanel implements ActionListener{
 		
 		borrarVia = new BorrarVia(ven, this);
 		borrarVia.setVisible(false);
-		borrarCiudad.setBounds(0, 0, borrarCiudad.getWidth(), borrarCiudad.getHeight());
+		borrarVia.setBounds(0, 0, borrarVia.getWidth(), borrarVia.getHeight());
 		
 		panelRecorrido = new PanelRecorrido(ven,this);
 		
@@ -160,9 +160,6 @@ public class PanelAcciones extends JPanel implements ActionListener{
 			panelCrear.setVisible(true);
 			panelMapa.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			presionado[1] = false;
-			break;
-		case VentanaPrincipal.COMANDO_ABOUT:
-			principal.ShowAbout();
 			break;
 		case PanelBorrar.BTN_BORRAR_CIUDAD:
 			borrarCiudad.actualizarCiudades(principal.getBoyaca().getCiudades());

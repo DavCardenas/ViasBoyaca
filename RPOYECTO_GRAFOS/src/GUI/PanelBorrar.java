@@ -13,7 +13,6 @@ import javax.swing.LayoutFocusTraversalPolicy;
 public class PanelBorrar extends JPanel{
 
 	private JButton btnBorrarCiudad;
-
 	private JButton btnBorrarVia;
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;

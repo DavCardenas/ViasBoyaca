@@ -39,7 +39,7 @@ public class DialogAbout extends JDialog{
     private JPanel jPanelText;
     private VentanaPrincipal principal;
 
-    public DialogAbout(PanelAcciones acciones, VentanaPrincipal ventanaPrincipal) {
+    public DialogAbout(Eventos eventos, VentanaPrincipal ventanaPrincipal) {
         
        setTitle("Acerca de");
        setSize(450, 200);

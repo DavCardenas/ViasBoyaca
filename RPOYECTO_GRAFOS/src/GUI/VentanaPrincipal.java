@@ -44,7 +44,9 @@ public class VentanaPrincipal extends JFrame{
 	private JMenu menuAyuda;
 	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
+	private Eventos eventos;
 	private DialogAbout about;
+	private DialogCiudad ciudad;
 	
 	public static final String BTN_ABRIR = "ABRIR_ARCHIVO";
 	public static final String BTN_GUARDAR = "GUARDAR_ARCHIVO";
@@ -87,9 +89,12 @@ public class VentanaPrincipal extends JFrame{
 		boyaca = new ViasBoyaca();
 		
 		panelAcciones = new PanelAcciones(this);
+		eventos = new Eventos(this);
 		mapa = new PanelMapa(this,boyaca,panelAcciones);
 		panelAcciones.setPanelMapa(mapa);
-		about = new DialogAbout(panelAcciones, this);
+		about = new DialogAbout(eventos, this);
+		ciudad = new DialogCiudad(this, eventos);
+		
 		
 		//mapa.setPreferredSize(new Dimension(mapa.ANCHO, mapa.ALTO));
 		
@@ -103,7 +108,7 @@ public class VentanaPrincipal extends JFrame{
 		btnAbrir.setIcon(new ImageIcon(getClass().getResource(
 				"/img/openFile.png")));
 		btnAbrir.setFocusable(false);
-		btnAbrir.addActionListener(panelAcciones);
+		btnAbrir.addActionListener(eventos);
 		btnAbrir.setActionCommand(BTN_ABRIR);
 		btnAbrir.setToolTipText("Abrir Archivo");
 		
@@ -111,7 +116,7 @@ public class VentanaPrincipal extends JFrame{
 		btnGuardar.setIcon(new ImageIcon(getClass().getResource(
 				"/img/saveFile.png")));
 		btnGuardar.setFocusable(false);
-		btnGuardar.addActionListener(panelAcciones);
+		btnGuardar.addActionListener(eventos);
 		btnGuardar.setActionCommand(BTN_GUARDAR);
 		btnGuardar.setToolTipText("Guardar Archivo");
 		
@@ -119,7 +124,7 @@ public class VentanaPrincipal extends JFrame{
 		btnMostrarInfoCiudad.setIcon(new ImageIcon(getClass().getResource(
 				"/img/city.png")));
 		btnMostrarInfoCiudad.setFocusable(false);
-		btnMostrarInfoCiudad.addActionListener(panelAcciones);
+		btnMostrarInfoCiudad.addActionListener(eventos);
 		btnMostrarInfoCiudad.setActionCommand(BTN_INFOCITY);
 		btnMostrarInfoCiudad.setToolTipText("Muestra la información de una ciudad");
 		
@@ -127,7 +132,7 @@ public class VentanaPrincipal extends JFrame{
 		btnMostrarInfoVia.setIcon(new ImageIcon(getClass().getResource(
 				"/img/road.png")));
 		btnMostrarInfoVia.setFocusable(false);
-		btnMostrarInfoVia.addActionListener(panelAcciones);
+		btnMostrarInfoVia.addActionListener(eventos);
 		btnMostrarInfoVia.setActionCommand(BTN_INFOROAD);
 		btnMostrarInfoVia.setToolTipText("Muestra la información de una vía");
 
@@ -139,16 +144,16 @@ public class VentanaPrincipal extends JFrame{
 		
 		//Abrir
 		itemAbrir = new JMenuItem("Abrir");
-		itemAbrir.addActionListener(panelAcciones);
+		itemAbrir.addActionListener(eventos);
 		itemAbrir.setActionCommand(COMANDO_ABRIR);
 		
 		//Guardar
 		itemGuardar= new JMenuItem("Guardar");
-		itemGuardar.addActionListener(panelAcciones);
+		itemGuardar.addActionListener(eventos);
 		itemGuardar.setActionCommand(COMANDO_GUARDAR);
 		//Salir
 		itemSalir = new JMenuItem("Salir");
-		itemSalir.addActionListener(panelAcciones);
+		itemSalir.addActionListener(eventos);
 		itemSalir.setActionCommand(COMANDO_SALIR);
 		
 		
@@ -157,7 +162,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		//About
 		itemAbout = new JMenuItem("Acerca de");
-		itemAbout.addActionListener(panelAcciones);
+		itemAbout.addActionListener(eventos);
 		itemAbout.setActionCommand(COMANDO_ABOUT);
 		
 		menuArchivo.add(itemAbrir);
@@ -185,8 +190,11 @@ public class VentanaPrincipal extends JFrame{
 		add(mapa, BorderLayout.CENTER);
 		add(panelAcciones, BorderLayout.SOUTH);
 	}
-	public void ShowAbout(){
+	public void showAbout(){
 		about.setVisible(true);
+	}
+	public void showInfoCity(){
+		ciudad.setVisible(true);
 	}
 	public ViasBoyaca getBoyaca() {
 		return boyaca;
