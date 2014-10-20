@@ -28,7 +28,7 @@ import javax.swing.border.Border;
  *
  * @author  JUAN PABLO CONTRERAS
  */
-public class PanelAbout extends JDialog{
+public class DialogAbout extends JDialog{
  
     private JTextArea jTextAbout;
     private JLabel jLabelImage;
@@ -39,7 +39,7 @@ public class PanelAbout extends JDialog{
     private JPanel jPanelText;
     private VentanaPrincipal principal;
 
-    public PanelAbout(PanelAcciones acciones, VentanaPrincipal ventanaPrincipal) {
+    public DialogAbout(PanelAcciones acciones, VentanaPrincipal ventanaPrincipal) {
         
        setTitle("Acerca de");
        setSize(450, 200);

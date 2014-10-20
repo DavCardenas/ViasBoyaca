@@ -44,7 +44,7 @@ public class VentanaPrincipal extends JFrame{
 	private JMenu menuAyuda;
 	private JMenuItem itemAbout;
 	private PanelAcciones panelAcciones;
-	private PanelAbout about;
+	private DialogAbout about;
 	
 	public static final String BTN_ABRIR = "ABRIR_ARCHIVO";
 	public static final String BTN_GUARDAR = "GUARDAR_ARCHIVO";
@@ -89,7 +89,7 @@ public class VentanaPrincipal extends JFrame{
 		panelAcciones = new PanelAcciones(this);
 		mapa = new PanelMapa(this,boyaca,panelAcciones);
 		panelAcciones.setPanelMapa(mapa);
-		about = new PanelAbout(panelAcciones, this);
+		about = new DialogAbout(panelAcciones, this);
 		
 		//mapa.setPreferredSize(new Dimension(mapa.ANCHO, mapa.ALTO));
 		
