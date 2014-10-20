@@ -202,6 +202,9 @@ public class VentanaPrincipal extends JFrame{
 	public void setBoyaca(ViasBoyaca boyaca) {
 		this.boyaca = boyaca;
 	}
+	public void actualizarCiudadInfo(){
+		ciudad.actualizarCiudades(boyaca.getCiudades());
+	}
 	
 	
 }

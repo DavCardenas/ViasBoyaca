@@ -6,13 +6,10 @@ import java.awt.event.ActionListener;
 public class Eventos implements ActionListener {
 
 	private VentanaPrincipal principal;
-	private DialogCiudad ciudad;
+
 	
 	public Eventos(VentanaPrincipal Vprincipal) {
 		this.principal = Vprincipal;
-		
-		
-		ciudad = new DialogCiudad(principal, this);
 	}
 	
 	@Override
@@ -24,7 +21,7 @@ public class Eventos implements ActionListener {
 			principal.showAbout();
 			break;
 		case VentanaPrincipal.BTN_INFOCITY:
-			ciudad.actualizarCiudades(principal.getBoyaca().getCiudades());
+			principal.actualizarCiudadInfo();
 			principal.showInfoCity();
 			break;
 
