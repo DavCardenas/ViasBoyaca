@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import logic.Ciudad;
+import logic.Estado;
 import logic.Via;
 import logic.ViasBoyaca;
 
@@ -65,6 +66,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		mapa = new JLabel(new ImageIcon(img));
 
 		panelContenedorMapa.add(mapa);
+		//panelContenedorMapa.addMouseListener(this);
 
 		panelScroll = new JScrollPane(panelContenedorMapa);
 		panelScroll.addMouseListener(this);
@@ -84,8 +86,9 @@ public class PanelMapa extends JPanel implements MouseListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				actualizar();
 				increaseZoom();
+				actualizarDatos(viasBoyaca.getCiudades(),xScaleFactor,yScaleFactor);
+				actualizar();
 			}
 		});
 		btnZoom1.setBounds(120, 350, 90, 25);
@@ -98,6 +101,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				decreaseZoom();
+				actualizarDatos(viasBoyaca.getCiudades(),xScaleFactor,yScaleFactor);
 				actualizar();
 			}
 		});
@@ -109,6 +113,16 @@ public class PanelMapa extends JPanel implements MouseListener {
 		encontrar = false;
 		panelAcciones = ppAcciones;
 
+	}
+	
+	public void actualizarDatos(ArrayList<Ciudad> ciudades, float escalaX , float escalaY) {
+		for (Ciudad ciudad : ciudades) {
+			ciudad.cacularEscala(escalaX, escalaY);
+			ciudad.cacularEscalaTamanio(escalaX, escalaY);
+			System.out.println("Valores X: " + ciudad.getPosX() + " Y: " + ciudad.getPosY());
+			System.out.println("Escala X: "+ciudad.getScaleX()+ " Y: " + ciudad.getScaleY());
+		}
+		repaint();
 	}
 
 	public void actualizar() {
@@ -141,6 +155,8 @@ public class PanelMapa extends JPanel implements MouseListener {
 		Ciudad aux = new Ciudad();
 		aux.setPosX(e.getX() - 3);
 		aux.setPosY(e.getY() - 3);
+		aux.setScaleX(e.getX() - 3);
+		aux.setScaleY(e.getY() - 3);
 		aux.setNombre(panelAcciones.getPanelCrearCiudad().getNombre());
 		panelAcciones.getPanelCrearCiudad().setNombre("");
 		viasBoyaca.getCiudades().add(aux);
@@ -175,7 +191,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 			for (Ciudad ciudad : aux) {
 				g.setColor(ciudad.getColor());
-				g.fillOval(ciudad.getPosX(), ciudad.getPosY(), 6, 6);
+				g.fillOval((int)ciudad.getScaleX(), (int)ciudad.getScaleY(), (int)ciudad.getAncho(), (int)ciudad.getAlto());
 			}
 		}
 		if (!viasBoyaca.getVias().isEmpty()) {

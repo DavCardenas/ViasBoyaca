@@ -9,6 +9,8 @@ public class Ciudad {
 	private int posY;
 	private float scaleX;
 	private float scaleY;
+	private float ancho;
+	private float alto;
 	private Color color;
 	
 	public Ciudad() {
@@ -16,8 +18,10 @@ public class Ciudad {
 		nombre = null;
 		posX = 0;
 		posY = 0;
-		scaleX = posX;
-		scaleY = posY;
+		scaleX = 0;
+		scaleY = 0;
+		ancho = 6;
+		alto = 6;
 	}
 	public Ciudad(String pNombre, int pX, int pY) {
 		this.nombre = pNombre;
@@ -48,9 +52,37 @@ public class Ciudad {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-
-	public void cacularEscala(float escala) {
-		scaleX = scaleX * escala;
-		scaleY = scaleY * escala;
+	public float getScaleX() {
+		return scaleX;
+	}
+	public void setScaleX(float scaleX) {
+		this.scaleX = scaleX;
+	}
+	public float getScaleY() {
+		return scaleY;
+	}
+	public void setScaleY(float scaleY) {
+		this.scaleY = scaleY;
+	}
+	
+	public float getAncho() {
+		return ancho;
+	}
+	public void setAncho(float ancho) {
+		this.ancho = ancho;
+	}
+	public float getAlto() {
+		return alto;
+	}
+	public void setAlto(float alto) {
+		this.alto = alto;
+	}
+	public void cacularEscala(float escalaX,float escalaY) {
+		scaleX = posX * escalaX;
+		scaleY = posY * escalaY;
+	}
+	public void cacularEscalaTamanio(float escalaX,float escalaY) {
+		ancho = 6 * escalaX;
+		alto = 6 * escalaY;
 	}
 }
