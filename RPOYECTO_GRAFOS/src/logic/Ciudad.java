@@ -7,6 +7,8 @@ public class Ciudad {
 	private String nombre;
 	private int posX;
 	private int posY;
+	private float scaleX;
+	private float scaleY;
 	private Color color;
 	
 	public Ciudad() {
@@ -14,6 +16,8 @@ public class Ciudad {
 		nombre = null;
 		posX = 0;
 		posY = 0;
+		scaleX = posX;
+		scaleY = posY;
 	}
 	public Ciudad(String pNombre, int pX, int pY) {
 		this.nombre = pNombre;
@@ -45,4 +49,8 @@ public class Ciudad {
 		this.color = color;
 	}
 
+	public void cacularEscala(float escala) {
+		scaleX = scaleX * escala;
+		scaleY = scaleY * escala;
+	}
 }

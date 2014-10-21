@@ -3,8 +3,20 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Transparency;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.PixelGrabber;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -20,9 +32,6 @@ import logic.ViasBoyaca;
 
 public class PanelMapa extends JPanel implements MouseListener {
 
-	public final static int ANCHO = 900;
-	public final static int ALTO = 450;
-
 	private JLabel mapa;
 	private JButton btnZoom1;
 	private JButton btnZoom2;
@@ -33,13 +42,37 @@ public class PanelMapa extends JPanel implements MouseListener {
 	private Ciudad[] ciudades;
 	private int contador;
 	private int id;
+	private JScrollPane panelScroll;
+	private JPanel panelContenedorMapa;
+	private float xScaleFactor;
+	private float yScaleFactor;
+	private BufferedImage img;
 	private Ciudad Caux;
-	
+
 	public PanelMapa(VentanaPrincipal ven, ViasBoyaca vias, PanelAcciones ppAcciones) {
-		setBackground(Color.blue);
 		// this.setPreferredSize(new Dimension(ANCHO, ALTO));
-		setSize(ANCHO, ALTO);
+		setSize(ven.getWidth(), (int)(ven.getHeight()-(ven.getHeight()*0.40)));
 		setLayout(null);
+
+		xScaleFactor = 1;
+		yScaleFactor = 1;
+
+		img = toBufferedImage(createImage("/img/mapa2.png").getImage());
+
+		panelContenedorMapa = new JPanel();
+		panelContenedorMapa.setOpaque(false);
+
+		mapa = new JLabel(new ImageIcon(img));
+
+		panelContenedorMapa.add(mapa);
+
+		panelScroll = new JScrollPane(panelContenedorMapa);
+		panelScroll.addMouseListener(this);
+		panelScroll.setOpaque(false);
+		panelScroll.getViewport().setOpaque(false);
+		panelScroll.getViewport().setBackground (new Color (0.0f,0.0f,0.0f,0.0f));
+		panelScroll.setBounds(0, 0, getWidth(), getHeight());
+		//panelScroll.getViewport().setBackground (Color.black);
 
 		viasBoyaca = vias;
 		ciudades = new Ciudad[2];
@@ -47,17 +80,61 @@ public class PanelMapa extends JPanel implements MouseListener {
 		id = 0;
 
 		btnZoom1 = new JButton("Zoom (+)");
+		btnZoom1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				actualizar();
+				increaseZoom();
+			}
+		});
 		btnZoom1.setBounds(120, 350, 90, 25);
 		add(btnZoom1);
 
 		btnZoom2 = new JButton("Zoom (-)");
 		btnZoom2.setBounds(120, 320, 90, 25);
+		btnZoom2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				decreaseZoom();
+				actualizar();
+			}
+		});
 		add(btnZoom2);
+
+		add(panelScroll);
 
 		addMouseListener(this);
 		encontrar = false;
 		panelAcciones = ppAcciones;
 
+	}
+
+	public void actualizar() {
+		panelContenedorMapa.remove(mapa);
+		int newW = (int) (img.getWidth() * xScaleFactor);
+		int newH = (int) (img.getHeight() * yScaleFactor);
+		//scaleX = x * xScaleFactor;
+		//scaleY = y * yScaleFactor;
+		//ancho = mAncho * xScaleFactor;
+		//alto = mAlto * yScaleFactor;
+		mapa = new JLabel(new ImageIcon(img.getScaledInstance(newW, newH, 10)));
+		panelContenedorMapa.add(mapa);
+		panelContenedorMapa.updateUI();
+		mapa.updateUI();
+	}
+
+	public void increaseZoom() {
+		xScaleFactor += 0.1;
+		yScaleFactor += 0.1;
+		repaint();
+	}
+
+	public void decreaseZoom() {
+		xScaleFactor -= 0.1;
+		yScaleFactor -= 0.1;
+		repaint();
 	}
 
 	public void crearCiudad(MouseEvent e) {
@@ -70,7 +147,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 		panelAcciones.ActualizarCiudadesRecorrido();
 		repaint();
 	}
-	
+
 	public void crearVia() {
 		if (ciudades[0]!=null&&ciudades[1]!=null && panelAcciones.getPanelCrearVia().verificarDatos()) {
 			id += 1;
@@ -80,7 +157,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 			via.setCiudadFinal(ciudades[1]);
 			via.setId(id);
 			viasBoyaca.getVias().add(via);
-		
+
 		}else {
 			JOptionPane.showMessageDialog(this, "No se puede crear la via");
 		}
@@ -89,10 +166,11 @@ public class PanelMapa extends JPanel implements MouseListener {
 
 	@Override
 	public void paint(Graphics g) {
+		super.paint(g);
 		//g.drawImage(new ImageIcon(getClass().getResource("/img/mapa.png")).getImage(), 0, 0, null);
-		g.drawImage(new ImageIcon(getClass().getResource("/img/mapa2.png")).getImage(), 300, 0, null);
+		//g.drawImage(new ImageIcon(getClass().getResource("/img/mapa2.png")).getImage(), 300, 0, null);
 		g.setFont(new Font("Arial", Font.BOLD, 11));
-		this.setOpaque(false);
+		//this.setOpaque(false);
 		if (!viasBoyaca.getCiudades().isEmpty()) {
 			ArrayList<Ciudad> aux = viasBoyaca.getCiudades();
 			for (Ciudad ciudad : aux) {
@@ -108,7 +186,6 @@ public class PanelMapa extends JPanel implements MouseListener {
 				g.drawLine(via.getCiudadInicial().getPosX(), via.getCiudadInicial().getPosY(), via.getCiudadFinal().getPosX(), via.getCiudadFinal().getPosY());
 			}
 		}
-		super.paint(g);
 	}
 
 	@Override
@@ -143,7 +220,7 @@ public class PanelMapa extends JPanel implements MouseListener {
 			contador = 0;
 		}
 	}
-	
+
 	public void limpiarCiudades() {
 		if (ciudades[0] != null && ciudades[1] != null) {
 			ciudades[0].setColor(Color.BLACK);
@@ -194,5 +271,73 @@ public class PanelMapa extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public static BufferedImage toBufferedImage(Image image) {
+		if (image instanceof BufferedImage) {
+			return (BufferedImage) image;
+		}
+
+		image = new ImageIcon(image).getImage();
+
+		boolean hasAlpha = hasAlpha(image);
+
+		BufferedImage bimage = null;
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		try {
+
+			int transparency = Transparency.OPAQUE;
+			if (hasAlpha) {
+				transparency = Transparency.BITMASK;
+			}
+
+			GraphicsDevice gs = ge.getDefaultScreenDevice();
+			GraphicsConfiguration gc = gs.getDefaultConfiguration();
+			bimage = gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
+		} catch (HeadlessException e) {
+			// The system does not have a screen
+		}
+
+		if (bimage == null) {
+			int type = BufferedImage.TYPE_INT_RGB;
+			if (hasAlpha) {
+				type = BufferedImage.TYPE_INT_ARGB;
+			}
+			bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
+		}
+
+		Graphics g = bimage.createGraphics();
+
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+
+		return bimage;
+	}
+
+	public static boolean hasAlpha(Image image) {
+
+		if (image instanceof BufferedImage) {
+			BufferedImage bimage = (BufferedImage) image;
+			return bimage.getColorModel().hasAlpha();
+		}
+
+		PixelGrabber pg = new PixelGrabber(image, 0, 0, 1, 1, false);
+		try {
+			pg.grabPixels();
+		} catch (InterruptedException e) {
+		}
+
+		ColorModel cm = pg.getColorModel();
+		return cm.hasAlpha();
+	}
+
+	private ImageIcon createImage(String path) {
+		URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL);
+		} else {
+			System.err.println("Couldn't find file: " + path);
+			return null;
+		}
 	}
 }
