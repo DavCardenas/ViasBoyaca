@@ -211,11 +211,43 @@ public class PaneMap extends JPanel implements MouseListener {
 			ArrayList<Track> auxTrack = tracksBoyaca.getTrack();
 			g.setColor(Color.black);
 			for (Track track : auxTrack) {
+				g.setColor(track.getColor());
+				System.out.println(track.getColor());
 				g.drawString(track.getId() + "", track.calculatePosText().x, track.calculatePosText().y);
 				g.drawLine(track.getCityInitial().getPointX(), track.getCityInitial().getPointY(), track.getCityEnd()
 						.getPointX(), track.getCityEnd().getPointY());
 			}
 		}
+	}
+	
+	public void changeColorTrack(String ids) {
+		ArrayList<Track> auxTrack = tracksBoyaca.getTrack();
+		String cadena = ids.replace(" ", "");
+		for (int i = 0; i < cadena.length()-1; i++) {
+			for (Track track : auxTrack) {
+				System.out.println(track.getCityInitial().getId() + cadena.charAt(i));
+				if (track.getCityInitial().getId() == Character.digit(cadena.charAt(i),10) && track.getCityEnd().getId() == Character.digit(cadena.charAt(i+1),10)) {
+						track.setColor(Color.RED);
+						System.out.println("entra");
+				}
+				if (track.getCityInitial().getId() == Character.digit(cadena.charAt(i+1),10) && track.getCityEnd().getId() == Character.digit(cadena.charAt(i),10)) {
+					track.setColor(Color.RED);
+					System.out.println("entra");
+				}
+			}
+		}
+		repaint();
+	}
+	
+	/**
+	 * cambia el color de todas las vias
+	 */
+	public void cleanTrack() {
+		ArrayList<Track> aux = tracksBoyaca.getTrack();
+		for (Track track : aux) {
+			track.setColor(Color.BLACK);
+		}
+		repaint();
 	}
 
 	@Override

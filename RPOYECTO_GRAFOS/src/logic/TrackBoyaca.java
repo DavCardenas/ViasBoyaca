@@ -54,7 +54,7 @@ public class TrackBoyaca {
 	 * Calcula el recorrido mas corto por distancia o longitud
 	 * a partir de dos ciudades
 	 */
-	public void calculateRouteLength(int idInitial, int idEnd){
+	public String calculateRouteLength(int idInitial, int idEnd){
 		valuesRoute = null;
 		valuesRoute = new int[cities.size()][cities.size()];
 		fillValuesRoute('l');
@@ -63,8 +63,8 @@ public class TrackBoyaca {
 		City aux = new City();
 		aux.setId(idEnd);
 		if(!listCity.contains(aux)) {
-            System.out.println("Error, nodo no alcanzable");
-            return;
+			JOptionPane.showMessageDialog(null, "Fatal Error!");
+            return "Adios";
         }
         aux = (City) listCity.get(listCity.indexOf(aux));
         int lenght = aux.getLenght();  
@@ -77,7 +77,7 @@ public class TrackBoyaca {
         String ruta = "";
         // recorre la pila para armar la ruta en el orden correcto
         while(!stack.isEmpty()) ruta+=(stack.pop().getId() + " ");
-        System.out.println(lenght + ": " + ruta);
+        return ruta;
 		
 	}
 	
@@ -178,7 +178,7 @@ public class TrackBoyaca {
 	/**
 	 * calcula el recorrido mas corto por tiempo
 	 */
-	public void calculateRouteTime(int idInitial, int idEnd){
+	public String calculateRouteTime(int idInitial, int idEnd){
 		valuesRoute = null;
 		valuesRoute = new int[cities.size()][cities.size()];
 		fillValuesRoute('t');
@@ -187,8 +187,8 @@ public class TrackBoyaca {
 		City aux = new City();
 		aux.setId(idEnd);
 		if(!listCity.contains(aux)) {
-            System.out.println("Error, nodo no alcanzable");
-            return;
+			JOptionPane.showMessageDialog(null, "Fatal Error!");
+			return "Adios";
         }
         aux = (City) listCity.get(listCity.indexOf(aux));
         int lenght = aux.getLenght();  
@@ -201,7 +201,7 @@ public class TrackBoyaca {
         String ruta = "";
         // recorre la pila para armar la ruta en el orden correcto
         while(!stack.isEmpty()) ruta+=(stack.pop().getId() + " ");
-        System.out.println(lenght + ": " + ruta);
+        return ruta;
 	}
 	
 	public ArrayList<City> getCities() {

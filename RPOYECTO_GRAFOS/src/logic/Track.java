@@ -1,5 +1,6 @@
 package logic;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Track {
@@ -11,8 +12,10 @@ public class Track {
 	private City cityInitial;
 	private City cityEnd;
 	private int id;
+	private Color color;
 
 	public Track() {
+		color = Color.BLACK;
 		id = 0;
 		Length = 0;
 		status = "";
@@ -21,9 +24,24 @@ public class Track {
 		cityInitial = null;
 		cityEnd = null;
 	}
+	
 	public Track(City pCityInitial, City pCityEnd) {
 		this.cityInitial = pCityInitial;
 		this.cityEnd = pCityEnd;
+		color = Color.BLACK;
+		id = 0;
+		Length = 0;
+		status = "";
+		time = 0;
+		speed = 0;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 	public int getLength() {
 		return Length;
