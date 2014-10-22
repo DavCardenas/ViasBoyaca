@@ -2,7 +2,7 @@ package logic;
 
 import java.awt.Color;
 
-public class City {
+public class City implements Comparable<City>{
 	
 	private String name;
 	private int pointX;
@@ -12,8 +12,11 @@ public class City {
 	private float width;
 	private float height;
 	private Color color;
+	private int id;
+	private City after;
+	private int lenght;
 	
-	public final static int TAMANIO = 6;
+	public final static float TAMANIO = 6;
 	
 	public City() {
 		color = Color.BLACK;
@@ -24,11 +27,40 @@ public class City {
 		scaleY = 0;
 		width = TAMANIO;
 		height = TAMANIO;
+		after = null;
+		lenght = Integer.MAX_VALUE;
 	}
-	public City(String pName, int pX, int pY) {
+	public City(String pName, int pX, int pY, int id) {
 		this.name = pName;
 		this.pointX = pX;
 		this.pointY = pY;
+		width = TAMANIO;
+		height = TAMANIO;
+		scaleX = 0;
+		scaleY = 0;
+		this.id = id;
+		after = null;
+		lenght = Integer.MAX_VALUE;
+		color = Color.BLACK;
+	}
+	
+	public int getLenght() {
+		return lenght;
+	}
+	public void setLenght(int lenght) {
+		this.lenght = lenght;
+	}
+	public City getAfter() {
+		return after;
+	}
+	public void setAfter(City after) {
+		this.after = after;
+	}
+	public int hashCode() {
+		return after.hashCode();
+	}
+	public String toString() {
+		return after.toString();
 	}
 	public String getName() {
 		return name;
@@ -80,6 +112,13 @@ public class City {
 		this.height = pHeight;
 	}
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * Calcula la nueva posicion a partir de la escala de zoom
 	 * @param pScaleX
@@ -99,4 +138,12 @@ public class City {
 		width = TAMANIO * pScaleX;
 		height = TAMANIO * pScaleY;
 	}
+	
+	public int compareTo(City tmp) { return this.lenght-tmp.lenght; }
+	
+    public boolean equals(Object o) {
+        City tmp = (City) o;
+        if(tmp.id==this.id) return true;
+        return false;
+    }
 }

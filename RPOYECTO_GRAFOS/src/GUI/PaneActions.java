@@ -185,6 +185,9 @@ public class PaneActions extends JPanel implements ActionListener{
 			dellTrack.updateTracks(principal.getBoyaca().getTrack());
 			paneMap.repaint();
 		break;
+		case PanelRoute.BTN_ACCEPT:
+				principal.getBoyaca().calculateRouteLength(panelRoute.cityInitial(), panelRoute.cityEnd());
+			break;
 		default:
 			break;
 		}

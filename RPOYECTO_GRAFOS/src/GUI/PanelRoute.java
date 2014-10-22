@@ -88,4 +88,12 @@ public class PanelRoute extends JPanel{
 			modelCityF.addElement(city.getName());
 		}
 	}
+	
+	public int cityInitial() {
+		return cbxCityInitial.getSelectedIndex();
+	}
+	
+	public int cityEnd() {
+		return cbxCityEnd.getSelectedIndex();
+	}
 }

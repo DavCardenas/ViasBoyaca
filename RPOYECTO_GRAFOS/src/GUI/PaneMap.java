@@ -45,7 +45,8 @@ public class PaneMap extends JPanel implements MouseListener {
 	private boolean find;
 	private City[] cities;
 	private int cont;
-	private int id;
+	private int idTrack;
+	private int idCity;
 	private JScrollPane paneScroll;
 	private JPanel paneContentMap;
 	private float xScaleFactor;
@@ -79,7 +80,8 @@ public class PaneMap extends JPanel implements MouseListener {
 		tracksBoyaca = track;
 		cities = new City[2];
 		cont = 0;
-		id = 0;
+		idTrack = 0;
+		idCity = 0;
 
 		btnZoom1 = new JButton("Zoom (+)");
 		btnZoom1.addActionListener(new ActionListener() {
@@ -166,16 +168,14 @@ public class PaneMap extends JPanel implements MouseListener {
 	 * @param e
 	 */
 	public void createCity(MouseEvent e) {
-		City aux = new City();
-		aux.setPointX(e.getX() - 3);
-		aux.setPointY(e.getY() - 3);
-		aux.setScaleX(e.getX() - 3);
-		aux.setScaleY(e.getY() - 3);
-		aux.setName(paneActions.getPaneCreateCity().getName());
+		City aux = tracksBoyaca.addCityint(e.getX()-3, e.getY()-3, paneActions.getPaneCreateCity().getName(), idCity);
+		aux.setScaleX(aux.getPointX());
+		aux.setScaleY(aux.getPointY());
 		paneActions.getPaneCreateCity().setName("");
 		tracksBoyaca.getCities().add(aux);
 		paneActions.updateCityRoute();
 		repaint();
+		idCity += 1;
 	}
 
 	/**
@@ -184,14 +184,11 @@ public class PaneMap extends JPanel implements MouseListener {
 	 */
 	public void createTrack() {
 		if (cities[0] != null && cities[1] != null && paneActions.getPaneCreateTrack().verifyData()) {
-			id += 1;
-			Track via = new Track();
+			Track via = tracksBoyaca.addTrack(cities[0], cities[1]);
 			paneActions.getPaneCreateTrack().sendData(via);
-			via.setCityInitial(cities[0]);
-			via.setCityEnd(cities[1]);
-			via.setId(id);
+			via.setId(idTrack);
 			tracksBoyaca.getTrack().add(via);
-
+			idTrack += 1;
 		} else {
 			JOptionPane.showMessageDialog(this, "No se puede crear la via");
 		}
@@ -206,8 +203,8 @@ public class PaneMap extends JPanel implements MouseListener {
 			ArrayList<City> auxCity = tracksBoyaca.getCities();
 			for (City city : auxCity) {
 				g.setColor(city.getColor());
-				g.fillOval((int) city.getScaleX(), (int) city.getScaleY(), (int) city.getWidth(),
-						(int) city.getHeight());
+				g.fillOval((int)city.getScaleX(), (int)city.getScaleY(), (int)city.getWidth(),
+						(int)city.getHeight());
 			}
 		}
 		if (!tracksBoyaca.getTrack().isEmpty()) {
@@ -231,23 +228,29 @@ public class PaneMap extends JPanel implements MouseListener {
 			}
 		}
 		if (paneActions.getPress()[1]) {
+			City aux;
 			cont += 1;
 			if (!tracksBoyaca.getCities().isEmpty()) {
 				if (cont == 1) {
-					if (searchCity(arg0.getX(), arg0.getY()) != null) {
-						searchCity(arg0.getX(), arg0.getY()).setColor(Color.RED);
+					aux = searchCity(arg0.getX(), arg0.getY());
+					if (aux != null) {
+						aux.setColor(Color.RED);
+						cities[0] = aux;
 						repaint();
-						cities[0] = searchCity(arg0.getX(), arg0.getY());
+						aux = null;
 					}
 				} else if (cont == 2) {
-					if (searchCity(arg0.getX(), arg0.getY()) != null) {
-						searchCity(arg0.getX(), arg0.getY()).setColor(Color.BLUE);
+					aux = searchCity(arg0.getX(), arg0.getY());
+					if ( aux != null) {
+						aux.setColor(Color.BLUE);
+						cities[1] = aux;
 						repaint();
-						cities[1] = searchCity(arg0.getX(), arg0.getY());
+						aux = null;
 					}
 				}
 				find = false;
 			}
+			aux = null;
 		}
 		if (cont == 2) {
 			cont = 0;
@@ -259,8 +262,10 @@ public class PaneMap extends JPanel implements MouseListener {
 	 * de las ciudades seleccionadas
 	 */
 	public void cleanCities() {
-		if (cities[0] != null && cities[1] != null) {
+		if (cities[0] != null) {
 			cities[0].setColor(Color.BLACK);
+		}
+		if (cities[1] != null) {
 			cities[1].setColor(Color.BLACK);
 		}
 		cities[0] = null;
@@ -396,4 +401,14 @@ public class PaneMap extends JPanel implements MouseListener {
 			return null;
 		}
 	}
+
+	public City[] getCities() {
+		return cities;
+	}
+
+	public void setCities(City[] cities) {
+		this.cities = cities;
+	}
+	
+	
 }
