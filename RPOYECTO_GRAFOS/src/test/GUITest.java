@@ -1,11 +1,11 @@
 package test;
 
-import GUI.VentanaPrincipal;
+import GUI.WindowsPrincipal;
 
 public class GUITest {
 
 	public static void main(String[] args) {
-		VentanaPrincipal principal =  new VentanaPrincipal();
+		WindowsPrincipal principal =  new WindowsPrincipal();
 		principal.setVisible(true);
 	}
 }

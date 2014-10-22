@@ -2,27 +2,14 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Panel;
-import java.util.Properties;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.border.Border;
 
 /**
  *
@@ -30,16 +17,17 @@ import javax.swing.border.Border;
  */
 public class DialogAbout extends JDialog{
  
-    private JTextArea jTextAbout;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private JTextArea jTextAbout;
     private JLabel jLabelImage;
-    private Image imagen;
-    private JButton jButtonAccept;
     private JPanel jPanelImage;
-    private JPanel jPanelButton;
     private JPanel jPanelText;
-    private VentanaPrincipal principal;
 
-    public DialogAbout(Eventos eventos, VentanaPrincipal ventanaPrincipal) {
+    public DialogAbout(Events events, WindowsPrincipal windowsPrincipal) {
         
        setTitle("Acerca de");
        setSize(450, 200);

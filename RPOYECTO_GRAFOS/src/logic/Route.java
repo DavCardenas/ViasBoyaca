@@ -1,6 +1,6 @@
 package logic;
 
-public enum Recorrido {
+public enum Route {
 	DISTANCIA,TIEMPO
 
 }

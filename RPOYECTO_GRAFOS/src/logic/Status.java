@@ -1,5 +1,5 @@
 package logic;
 
-public enum Estado {
+public enum Status {
 	BUENO,MALO,PESIMO
 }
