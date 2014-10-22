@@ -178,7 +178,30 @@ public class TrackBoyaca {
 	/**
 	 * calcula el recorrido mas corto por tiempo
 	 */
-	public void calculateRouteTime(){
+	public void calculateRouteTime(int idInitial, int idEnd){
+		valuesRoute = null;
+		valuesRoute = new int[cities.size()][cities.size()];
+		fillValuesRoute('t');
+		searchRouteMin(idInitial);
+		
+		City aux = new City();
+		aux.setId(idEnd);
+		if(!listCity.contains(aux)) {
+            System.out.println("Error, nodo no alcanzable");
+            return;
+        }
+        aux = (City) listCity.get(listCity.indexOf(aux));
+        int lenght = aux.getLenght();  
+        // crea una pila para almacenar la ruta desde el nodo final al origen
+        Stack<City> stack = new Stack<City>();
+        while(aux != null) {
+            stack.add(aux);
+            aux = aux.getAfter();
+        }
+        String ruta = "";
+        // recorre la pila para armar la ruta en el orden correcto
+        while(!stack.isEmpty()) ruta+=(stack.pop().getId() + " ");
+        System.out.println(lenght + ": " + ruta);
 	}
 	
 	public ArrayList<City> getCities() {
