@@ -20,8 +20,8 @@ public class PaneCreate extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public final static String BTN_CREATE_CITY = "CREARCIUDAD";
-	public final static String BTN_CREATE_TRACK = "CREARVIA";
+	public final static String BTN_CREATE_CITY = "CREATE_CITY";
+	public final static String BTN_CREATE_TRACK = "CREATE_TRAK";
 	
 	public PaneCreate(WindowsPrincipal ven, PaneActions pPActions) {
 		

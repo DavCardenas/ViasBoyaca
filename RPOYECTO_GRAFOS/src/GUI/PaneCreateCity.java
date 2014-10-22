@@ -25,8 +25,8 @@ public class PaneCreateCity extends JPanel{
 	private GridBagConstraints gbc;
 	private String name;
 	
-	public final static String BTN_BACK = "VOLVER";
-	public final static String BTN_ACCEPT = "ACEPTARCC";
+	public final static String BTN_BACK = "RETURN_CC";
+	public final static String BTN_ACCEPT = "ACEPT_CC";
 	
 	public PaneCreateCity(WindowsPrincipal ven,PaneActions pPActions) {
 		

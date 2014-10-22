@@ -35,8 +35,8 @@ public class PaneCreateTrack extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public final static String BTN_BACK = "BTN_VOLVER_VIA";
-	public final static String BTN_CREATE_TRACK = "BTN_CREAR_VIA";
+	public final static String BTN_BACK = "RETURN_CT";
+	public final static String BTN_CREATE_TRACK = "ACEPT_CT";
 	
 	public PaneCreateTrack(WindowsPrincipal ven,PaneActions pPActions) {
 		

@@ -29,8 +29,8 @@ public class DellTrack extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public final static String BTN_BACK = "VOLVER_BORRARV";
-	public final static String BTN_ACCEPT = "ACEPTAR_BORRARV";
+	public final static String BTN_BACK = "RETURN_DELLT";
+	public final static String BTN_ACCEPT = "ACEPT_DELLT";
 	
 	public DellTrack(WindowsPrincipal ven, PaneActions pPActions) {
 		

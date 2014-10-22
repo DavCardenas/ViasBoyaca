@@ -21,8 +21,8 @@ public class PaneDell extends JPanel{
 	private GridBagConstraints gbc;
 	
 	
-	public static final String BTN_DELL_CITY = "BORRARC";
-	public static final String BTN_DELL_TRACK = "BORRARV";
+	public static final String BTN_DELL_CITY = "DELL_CITY";
+	public static final String BTN_DELL_TRACK = "DELL_TRACK";
 	
 	
 	

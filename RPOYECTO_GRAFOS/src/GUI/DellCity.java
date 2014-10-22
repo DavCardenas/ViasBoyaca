@@ -31,8 +31,8 @@ public class DellCity extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public final static String BTN_BACK = "VOLVER_BORRARC";
-	public final static String BTN_ACCEPT = "ACEPTAR_BORRARC";
+	public final static String BTN_BACK = "RETURN_DELLC";
+	public final static String BTN_ACCEPT = "ACEPT_DELLC";
 	
 	public DellCity(WindowsPrincipal ven, PaneActions pPActions) {
 		
