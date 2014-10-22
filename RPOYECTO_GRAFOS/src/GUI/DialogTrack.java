@@ -41,8 +41,8 @@ public class DialogTrack extends JDialog{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public static final String BTN_ACCEPT = "ACEPTAR_VIA";
-	public static final String BTN_BACK = "VOLVER_VIA";
+	public static final String BTN_ACCEPT = "ACEPT_TRACK";
+	public static final String BTN_BACK = "RETURN_TRACK";
 	
 	
 	public DialogTrack(WindowsPrincipal principal, Events events) {

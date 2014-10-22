@@ -49,13 +49,13 @@ public class WindowsPrincipal extends JFrame{
 	private DialogCity city;
 	private DialogTrack track;
 	
-	public static final String BTN_OPEN = "ABRIR_ARCHIVO";
-	public static final String BTN_SAVE = "GUARDAR_ARCHIVO";
-	public static final String BTN_INFOCITY = "CIUDAD";
-	public static final String BTN_INFOTRACK = "VIA";
-	public static final String COMAND_OPEN = "ABRIR_MENU";
-	public static final String COMAND_SAVE = "GUARDAR_MENU";
-	public static final String COMAND_EXIT = "SALIR";
+	public static final String BTN_OPEN = "OPEN_FILE";
+	public static final String BTN_SAVE = "SAVE_FILE";
+	public static final String BTN_INFOCITY = "CITY";
+	public static final String BTN_INFOTRACK = "TRACK";
+	public static final String COMAND_OPEN = "OPEN_MENU";
+	public static final String COMAND_SAVE = "SAVE_MENU";
+	public static final String COMAND_EXIT = "EXIT";
 	public static final String COMAND_ABOUT = "ABOUT";
 	
 	

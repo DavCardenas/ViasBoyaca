@@ -38,8 +38,8 @@ public class DialogCity extends JDialog {
 	private GridBagConstraints gbc;
 	
 	
-	public static final String BTN_ACCEPT = "ACEPTAR_CIUDAD";
-	public static final String BTN_BACK = "VOLVER_CIUDAD";
+	public static final String BTN_ACCEPT = "ACEPT_CITY";
+	public static final String BTN_BACK = "RETURN_CITY";
 	
 	public DialogCity(WindowsPrincipal principal, Events events) {
 		

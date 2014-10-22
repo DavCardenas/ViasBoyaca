@@ -34,7 +34,7 @@ public class PanelRoute extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	public static final String BTN_ACCEPT ="ACEPTAR_RECORRIDO";
+	public static final String BTN_ACCEPT ="ACEPT_ROUTE";
 	
 	public PanelRoute(WindowsPrincipal ven, PaneActions pPActions) {
 		setPreferredSize(new Dimension((int)(ven.getWidth()*0.33),200));
