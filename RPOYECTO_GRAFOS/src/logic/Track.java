@@ -97,16 +97,16 @@ public class Track {
 		int pointY;
 		pointX = Math.abs(((cityEnd.getPointX() - cityInitial.getPointX())/2));
 		pointY = Math.abs(((cityEnd.getPointY() - cityInitial.getPointY())/2));
-		if (cityInitial.getPointX()<cityEnd.getPointX()) {
-			pointX += cityInitial.getPointX() + 5;
+		if (cityInitial.getScaleX()<cityEnd.getScaleX()) {
+			pointX += cityInitial.getScaleX() + 5;
 		}else {
-			pointX = cityInitial.getPointX()-pointX-5;
+			pointX = (int) (cityInitial.getScaleX()-pointX-5);
 		}
 		
-		if (cityInitial.getPointY()<cityEnd.getPointY()) {
-			pointY += cityInitial.getPointY()+5;
+		if (cityInitial.getScaleY()<cityEnd.getScaleY()) {
+			pointY += cityInitial.getScaleY()+5;
 		}else {
-			pointY= cityInitial.getPointY()-pointY-5;
+			pointY= (int) (cityInitial.getScaleY()-pointY-5);
 		}
 		return new Point(pointX, pointY);
 	}

@@ -62,7 +62,7 @@ public class PaneMap extends JPanel implements MouseListener {
 		xScaleFactor = 1;
 		yScaleFactor = 1;
 
-		img = toBufferedImage(createImage("/img/mapaB.png").getImage());
+		img = toBufferedImage(createImage("/img/mapaBo.png").getImage());
 
 		map = new JLabel(new ImageIcon(img));
 		paneContentMap = new JPanel();
@@ -203,11 +203,10 @@ public class PaneMap extends JPanel implements MouseListener {
 		super.paint(g);
 		g.setFont(new Font("Arial", Font.BOLD, 11));
 		if (!tracksBoyaca.getCities().isEmpty()) {
-			g = paneContentMap.getGraphics();
 			ArrayList<City> auxCity = tracksBoyaca.getCities();
 			for (City city : auxCity) {
-				g.setColor(city.getColor());
-				g.fillOval((int)city.getScaleX(), (int)city.getScaleY(), (int)city.getWidth(),
+				paneContentMap.getGraphics().setColor(city.getColor());
+				paneContentMap.getGraphics().fillOval((int)city.getScaleX(), (int)city.getScaleY(), (int)city.getWidth(),
 						(int)city.getHeight());
 			}
 		}
@@ -215,10 +214,10 @@ public class PaneMap extends JPanel implements MouseListener {
 			ArrayList<Track> auxTrack = tracksBoyaca.getTrack();
 			g.setColor(Color.black);
 			for (Track track : auxTrack) {
-				g.setColor(track.getColor());
-				g.drawString(track.getId() + "", track.calculatePosText().x, track.calculatePosText().y);
-				g.drawLine(track.getCityInitial().getPointX(), track.getCityInitial().getPointY(), track.getCityEnd()
-						.getPointX(), track.getCityEnd().getPointY());
+				paneContentMap.getGraphics().setColor(track.getColor());
+				paneContentMap.getGraphics().drawString(track.getId() + "", track.calculatePosText().x, track.calculatePosText().y);
+				paneContentMap.getGraphics().drawLine((int) track.getCityInitial().getScaleX(),(int) track.getCityInitial().getScaleY(),(int) track.getCityEnd()
+						.getScaleX(),(int) track.getCityEnd().getScaleY());
 			}
 		}
 	}
@@ -228,14 +227,11 @@ public class PaneMap extends JPanel implements MouseListener {
 		String cadena = ids.replace(" ", "");
 		for (int i = 0; i < cadena.length()-1; i++) {
 			for (Track track : auxTrack) {
-				System.out.println(track.getCityInitial().getId() + cadena.charAt(i));
 				if (track.getCityInitial().getId() == Character.digit(cadena.charAt(i),10) && track.getCityEnd().getId() == Character.digit(cadena.charAt(i+1),10)) {
 						track.setColor(Color.RED);
-						System.out.println("entra");
 				}
 				if (track.getCityInitial().getId() == Character.digit(cadena.charAt(i+1),10) && track.getCityEnd().getId() == Character.digit(cadena.charAt(i),10)) {
 					track.setColor(Color.RED);
-					System.out.println("entra");
 				}
 			}
 		}
@@ -319,8 +315,8 @@ public class PaneMap extends JPanel implements MouseListener {
 	 * @return
 	 */
 	public City calculateColision(int posX, int posY, City ciudad, int i) {
-		if (posX >= ciudad.getPointX() && posX <= ciudad.getPointX() + 6) {
-			if (posY >= ciudad.getPointY() && posY <= ciudad.getPointY() + 6) {
+		if (posX >= ciudad.getScaleX() && posX <= ciudad.getScaleX() + 6) {
+			if (posY >= ciudad.getScaleY() && posY <= ciudad.getScaleY() + 6) {
 				find = true;
 				return tracksBoyaca.getCities().get(i);
 			}
