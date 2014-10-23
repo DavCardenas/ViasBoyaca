@@ -1,6 +1,7 @@
 package logic;
 
 import java.awt.Color;
+import java.awt.Point;
 
 public class City implements Comparable<City>{
 	
@@ -124,9 +125,9 @@ public class City implements Comparable<City>{
 	 * @param pScaleX
 	 * @param pScaleY
 	 */
-	public void calculateScale(float pScaleX,float pScaleY) {
-		scaleX = pointX * pScaleX;
-		scaleY = pointY * pScaleY;
+	public void calculateScale(float pscaleX, float pscaleY) {
+		scaleX = pointX * pscaleX;
+		scaleY = pointY * pscaleY;
 	}
 	
 	/**

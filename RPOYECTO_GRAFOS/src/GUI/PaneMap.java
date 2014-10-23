@@ -8,6 +8,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,22 +62,24 @@ public class PaneMap extends JPanel implements MouseListener {
 		xScaleFactor = 1;
 		yScaleFactor = 1;
 
-		img = toBufferedImage(createImage("/img/mapa2.png").getImage());
-
-		paneContentMap = new JPanel();
-		paneContentMap.setOpaque(false);
+		img = toBufferedImage(createImage("/img/mapaB.png").getImage());
 
 		map = new JLabel(new ImageIcon(img));
+		paneContentMap = new JPanel();
+		paneContentMap.addMouseListener(this);
+		paneContentMap.setOpaque(false);
 
 		paneContentMap.add(map);
 
 		paneScroll = new JScrollPane(paneContentMap);
 		paneScroll.addMouseListener(this);
+		paneScroll.setFocusable(false);
+		paneScroll.setBorder(null);
 		paneScroll.setOpaque(false);
 		paneScroll.getViewport().setOpaque(false);
 		paneScroll.getViewport().setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
 		paneScroll.setBounds(0, 0, getWidth(), getHeight());
-
+		
 		tracksBoyaca = track;
 		cities = new City[2];
 		cont = 0;
@@ -130,7 +133,7 @@ public class PaneMap extends JPanel implements MouseListener {
 		}
 		repaint();
 	}
-
+	
 	/**
 	 * actualiza los componentes graficos para mostrar el zoom
 	 */
@@ -200,6 +203,7 @@ public class PaneMap extends JPanel implements MouseListener {
 		super.paint(g);
 		g.setFont(new Font("Arial", Font.BOLD, 11));
 		if (!tracksBoyaca.getCities().isEmpty()) {
+			g = paneContentMap.getGraphics();
 			ArrayList<City> auxCity = tracksBoyaca.getCities();
 			for (City city : auxCity) {
 				g.setColor(city.getColor());
@@ -212,7 +216,6 @@ public class PaneMap extends JPanel implements MouseListener {
 			g.setColor(Color.black);
 			for (Track track : auxTrack) {
 				g.setColor(track.getColor());
-				System.out.println(track.getColor());
 				g.drawString(track.getId() + "", track.calculatePosText().x, track.calculatePosText().y);
 				g.drawLine(track.getCityInitial().getPointX(), track.getCityInitial().getPointY(), track.getCityEnd()
 						.getPointX(), track.getCityEnd().getPointY());
@@ -255,6 +258,7 @@ public class PaneMap extends JPanel implements MouseListener {
 		if (paneActions.getPress()[0]) {
 			if (paneActions.validateName()) {
 				this.createCity(arg0);
+				validate();
 			} else {
 				JOptionPane.showMessageDialog(this, "No ha llenado el formulario");
 			}
