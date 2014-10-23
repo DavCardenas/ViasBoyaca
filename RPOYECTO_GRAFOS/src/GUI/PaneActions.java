@@ -157,6 +157,7 @@ public class PaneActions extends JPanel implements ActionListener{
 			dellCity.setVisible(true);
 			break;
 		case PaneCreateTrack.BTN_CREATE_TRACK:
+			paneCreateTrack.Data();
 			paneMap.createTrack();
 			paneMap.cleanCities();
 			paneCreateTrack.cleanFields();

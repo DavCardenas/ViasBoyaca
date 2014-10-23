@@ -24,7 +24,17 @@ public class Track {
 		cityInitial = null;
 		cityEnd = null;
 	}
-	
+	public Track(City pCityInitial, City pCityEnd,int plengt, int ptime, int pspeed, String pstatus, int id){
+		this.cityInitial=pCityInitial;
+		this.cityEnd = pCityEnd;
+		this.Length = plengt;
+		this.id = id;
+		this.speed = pspeed;
+		this.time = ptime;
+		this.status = pstatus;
+		this.color = Color.BLACK;
+		
+	}
 	public Track(City pCityInitial, City pCityEnd) {
 		this.cityInitial = pCityInitial;
 		this.cityEnd = pCityEnd;

@@ -30,6 +30,7 @@ import javax.swing.JScrollPane;
 import logic.City;
 import logic.Track;
 import logic.TrackBoyaca;
+import logic.Validator;
 
 public class PaneMap extends JPanel implements MouseListener {
 
@@ -54,11 +55,13 @@ public class PaneMap extends JPanel implements MouseListener {
 	private float yScaleFactor;
 	private BufferedImage img;
 	private City Caux;
+	private Validator validator;
 
 	public PaneMap(WindowsPrincipal ven, TrackBoyaca track, PaneActions pPActions) {
 		setSize(ven.getWidth(), (int) (ven.getHeight() - (ven.getHeight() * 0.40)));
 		setLayout(null);
 
+		validator = new Validator();
 		xScaleFactor = 1;
 		yScaleFactor = 1;
 
@@ -171,6 +174,10 @@ public class PaneMap extends JPanel implements MouseListener {
 	 * @param e
 	 */
 	public void createCity(MouseEvent e) {
+		if (!(validator.validateNotHaveNumbers(paneActions.getPaneCreateCity().getName()))) {
+			JOptionPane.showMessageDialog(null, "Por favor introduzca solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+			paneActions.getPaneCreateCity().setName("");
+		} else{
 		City aux = tracksBoyaca.addCityint(e.getX()-3, e.getY()-3, paneActions.getPaneCreateCity().getName(), idCity);
 		aux.setScaleX(aux.getPointX());
 		aux.setScaleY(aux.getPointY());
@@ -179,6 +186,7 @@ public class PaneMap extends JPanel implements MouseListener {
 		paneActions.updateCityRoute();
 		repaint();
 		idCity += 1;
+		}
 	}
 
 	/**
@@ -186,16 +194,27 @@ public class PaneMap extends JPanel implements MouseListener {
 	 * agrega la via a una lista de vias
 	 */
 	public void createTrack() {
+		if (!(validator.validateNotHaveLetters(paneActions.getPaneCreateTrack().getLength()))) {
+			if (!(validator.validateNotHaveLetters(paneActions.getPaneCreateTrack().getTime()))) {
+				if (!(validator.validateNotHaveLetters(paneActions.getPaneCreateTrack().getSpeed()))) {
+					JOptionPane.showMessageDialog(null, "Por favor introduzca solo numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+					paneActions.getPaneCreateTrack().cleanFields();
+				}
+			}
+		}else{
 		if (cities[0] != null && cities[1] != null && paneActions.getPaneCreateTrack().verifyData()) {
-			Track via = tracksBoyaca.addTrack(cities[0], cities[1]);
-			paneActions.getPaneCreateTrack().sendData(via);
-			via.setId(idTrack);
+			int lenght= Integer.parseInt((paneActions.getPaneCreateTrack().getLength()));
+			int time= Integer.parseInt((paneActions.getPaneCreateTrack().getTime()));
+			int speed = Integer.parseInt((paneActions.getPaneCreateTrack().getSpeed()));
+			String status = (paneActions.getPaneCreateTrack().getStatus());
+			Track via = new Track(cities[0], cities[1],lenght,time,speed,status,idTrack);
 			tracksBoyaca.getTrack().add(via);
 			idTrack += 1;
 		} else {
 			JOptionPane.showMessageDialog(this, "No se puede crear la via");
 		}
 		repaint();
+		}
 	}
 
 	@Override
