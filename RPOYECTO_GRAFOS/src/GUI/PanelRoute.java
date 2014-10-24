@@ -89,6 +89,10 @@ public class PanelRoute extends JPanel{
 		}
 	}
 	
+	public int itemselected() {
+		return cbxRoute.getSelectedIndex();
+	}
+	
 	public int cityInitial() {
 		return cbxCityInitial.getSelectedIndex();
 	}

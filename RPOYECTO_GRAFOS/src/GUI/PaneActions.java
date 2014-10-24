@@ -187,7 +187,11 @@ public class PaneActions extends JPanel implements ActionListener{
 		break;
 		case PanelRoute.BTN_ACCEPT:
 			paneMap.cleanTrack();
-			paneMap.changeColorTrack(principal.getBoyaca().calculateRouteLength(panelRoute.cityInitial(), panelRoute.cityEnd()));
+			if (panelRoute.itemselected() == 0) {
+				paneMap.changeColorTrack(principal.getBoyaca().calculateRouteLength(panelRoute.cityInitial(), panelRoute.cityEnd()));
+			}else if (panelRoute.itemselected() == 1) {
+				paneMap.changeColorTrack(principal.getBoyaca().calculateRouteTime(panelRoute.cityInitial(), panelRoute.cityEnd()));
+			}
 			break;
 		default:
 			break;
