@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 
 import logic.Status;
 import logic.Track;
-import logic.Validator;
 
 public class PaneCreateTrack extends JPanel{
 
@@ -27,10 +26,6 @@ public class PaneCreateTrack extends JPanel{
 	private JLabel lbTime;
 	private JLabel lbStatus;
 	private JLabel lbSpeed;
-	private String length;
-	private String time;
-	private String speed;
-	private String status;
 	private JTextField txtLength;
 	private JTextField txtTime;
 	private JTextField txtSpeed;
@@ -40,17 +35,10 @@ public class PaneCreateTrack extends JPanel{
 	private GridBagLayout gridbag;
 	private GridBagConstraints gbc;
 	
-	
 	public final static String BTN_BACK = "RETURN_CT";
 	public final static String BTN_CREATE_TRACK = "ACEPT_CT";
 	
 	public PaneCreateTrack(WindowsPrincipal ven,PaneActions pPActions) {
-		
-		
-		time = "";
-		length = "";
-		speed = "";
-		status = "";
 		
 		setPreferredSize(new Dimension((int)(ven.getWidth()*0.33), 200));
 		gridbag = new GridBagLayout();
@@ -131,53 +119,14 @@ public class PaneCreateTrack extends JPanel{
 	}
 	
 	/**
-	 * Asigna los datos a unas variables globales, para que estás sean usadas al momento de crear via
+	 * envia los datos que se encuentran en los campos de texto
+	 * a una via que entra como parametro
+	 * @param track
 	 */
-	public void Data(){
-		length =(txtLength.getText());
-		time = (txtTime.getText());
-		speed =(txtSpeed.getText());
-		status = (cbxStatus.getSelectedItem().toString());
+	public void sendData(Track track) {
+			track.setLength(Integer.parseInt(txtLength.getText()));
+			track.setTime(Integer.parseInt(txtLength.getText()));
+			track.setStatus(cbxStatus.getSelectedItem().toString());
+			track.setSpeed(Integer.parseInt(txtLength.getText()));
 	}
-
-
-	public String getLength() {
-		return length;
-	}
-
-
-	public void setLength(String length) {
-		this.length = length;
-	}
-
-
-	public String getTime() {
-		return time;
-	}
-
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-
-	public String getSpeed() {
-		return speed;
-	}
-
-
-	public void setSpeed(String speed) {
-		this.speed = speed;
-	}
-
-
-	public String getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 }
