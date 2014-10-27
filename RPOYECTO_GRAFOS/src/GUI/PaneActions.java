@@ -157,6 +157,7 @@ public class PaneActions extends JPanel implements ActionListener{
 			dellCity.setVisible(true);
 			break;
 		case PaneCreateTrack.BTN_CREATE_TRACK:
+			paneCreateTrack.Data();
 			paneMap.createTrack();
 			paneMap.cleanCities();
 			paneCreateTrack.cleanFields();
@@ -187,11 +188,7 @@ public class PaneActions extends JPanel implements ActionListener{
 		break;
 		case PanelRoute.BTN_ACCEPT:
 			paneMap.cleanTrack();
-			if (panelRoute.itemselected() == 0) {
-				paneMap.changeColorTrack(principal.getBoyaca().calculateRouteLength(panelRoute.cityInitial(), panelRoute.cityEnd()));
-			}else if (panelRoute.itemselected() == 1) {
-				paneMap.changeColorTrack(principal.getBoyaca().calculateRouteTime(panelRoute.cityInitial(), panelRoute.cityEnd()));
-			}
+			paneMap.changeColorTrack(principal.getBoyaca().calculateRouteLength(panelRoute.cityInitial(), panelRoute.cityEnd()));
 			break;
 		default:
 			break;
